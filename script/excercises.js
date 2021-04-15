@@ -1,6 +1,8 @@
 "use strict";
-let databaseOut = [];
 
+
+// Here it is :)
+let databaseOut = [];
 async function loadData() {
     let response = await fetch("../data/json.json");
     let jsonData = await response.json();
@@ -11,7 +13,7 @@ async function loadData() {
   }
   loadData();
 
-
+console.log(databaseOut);
 
 
 function appendExcercises(databaseIn) 
