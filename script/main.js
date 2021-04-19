@@ -37,17 +37,17 @@ function hamburgerNav() {
 // load excercises
 const _programs = [];
 
-async function loadData() {
-  let response = await fetch("/data/json.json");
-  let jsonData = await response.json();
-  _programs.push(jsonData);
-console.log(_programs);
-console.log(jsonData);
-  appendNav(jsonData)
-  appendProfile(jsonData)
-}
+// async function loadData() {
+//   let response = await fetch("/data/json.json");
+//   let jsonData = await response.json();
+//   _programs.push(jsonData);
+// console.log(_programs);
+// console.log(jsonData);
+//   appendNav(jsonData)
+//   appendProfile(jsonData)
+// }
 
-console.log(_programs);
+// console.log(_programs);
 
 
 
@@ -95,7 +95,7 @@ function tabEventList ()
         // x[i].addEventListener("focusin", whereIsTheFocus )
       }
 }
-tabEventList ()
+tabEventList () 
 
 
 

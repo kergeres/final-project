@@ -4,11 +4,33 @@
     },
     {
         "id": 2,
-        "title": "Homework 2"
+        "title": "Homework 2",
+        "tasks": {
+                "task1": "hw 2 task 1 je vagyok",
+                
+                "task2": "hw 2 task 2 je vagyok"
+                },
+        "answers": {
+            "answer1": "hw 2 answer 1 je vagyok",
+            "answer2": "hw 2 answer 2 je vagyok"
+        }
     },
     {
         "id": 3,
-        "title": "Homework 3"
+        "title": "Homework 3",
+        "tasks": {
+                "task1": "hw 3 task 1 je vagyok",
+                
+                "task2": "hw 3 task 2 je vagyok"
+                },
+        "answers": {
+            "answer1": "hw 3 answer 1 je vagyok",
+            "answer2": "hw 3 answer 2 je vagyok"
+        }
+    },
+    {
+        "id": 4,
+        "title": "Homework 4"
     }
 
 ]
