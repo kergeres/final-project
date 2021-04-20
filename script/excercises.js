@@ -1,7 +1,7 @@
 "use strict";
 
 
-// Here it is :)
+// Fetches the excercises content (homeworks) from database
 let databaseOut = [];
 async function loadData() {
     let response = await fetch("../data/json.json");
@@ -10,18 +10,15 @@ async function loadData() {
     appendExcercises(databaseOut);
   }
 
-
 async function init()
 {
     await loadData();
-    console.log(databaseOut);
-    
+    console.log(databaseOut); 
 }
 
 init();
-
+// display the excercise list
 function appendExcercises(databaseIn) 
-
 {
     let htmlTemplate = "";
     for (let exc of databaseIn) {
@@ -34,52 +31,63 @@ function appendExcercises(databaseIn)
 }
 
 
+let chosenArray = ["empty"];
+// identify the chosen excercise and calls the function which displays the tasks
 function openExcercise(excId)
-{ let adottTomb = ["empty"];
-    let htmlTemplate = "";
-let szamok= 1;
+{
     for (const fut of databaseOut) {
         if (fut.id == excId)
         { 
-            adottTomb.fill(databaseOut.slice(fut.id-1, fut.id));
-         
-            for (let ubolt of adottTomb) {
-
-               htmlTemplate= ubolt[0].tasks[`task${szamok}`];
-            }
-        
-            document.querySelector("#next").addEventListener('click', function ()
-            {
-                szamok++;
-            })
+            chosenArray.fill(databaseOut.slice(fut.id-1, fut.id));
+            appendSlides(1)
         } 
-        
     }
-    document.querySelector(".exc-container").innerHTML = htmlTemplate;
-    
 }
-
-function magaAkiiratas (slide)
+let slidenumber = 1;
+// take the next slide on the Next click, calls the function which displays them
+document.querySelector("#next").addEventListener('click', function ()
 {
+    slidenumber++;
+    appendSlides(slidenumber)
+    console.log("number of slides: " + slidenumber);
+})
 
+// ¨displays all of the slides
+
+
+function appendSlides(slideNr)
+{
+    let lengthOfTasks = 0
+    let htmlTemplate = "";
+    for (let ubolt of chosenArray) {
+
+       
+        htmlTemplate= ubolt[0].tasks[`task${slideNr}`];
+        // Get the size of an the chosen excercise size (length)
+        lengthOfTasks = Object.size(ubolt[0].tasks)
+        console.log("ennyi task van ebben a tombben: " +lengthOfTasks);
+        
+     }
+     if(slideNr <= lengthOfTasks)
+     {
+
+        document.querySelector(".exc-container").innerHTML = htmlTemplate;
+     }
+
+     else
+     {
+        document.querySelector(".exc-container").innerHTML = "vege";
+     }
 }
 
-// function slides ()
-// {
-
-//     let excerciseLength = 2;
-
-//     let htmlTemplate = "";
-
-// document.querySelector("#3").addEventListener("click", function() {
-//    slides();
-//   })
-
-//     for (let fut of object) {
-        
-//         htmlTemplate = `<h2>${fut.answers[i]}</h2><br><br><button id="3" >kovetkezo</button>`
-//     }
-//     document.querySelector(".exc-container").innerHTML = htmlTemplate;
-// }
 
 
+Object.size = function(obj) {
+    var size = 0,
+      key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+  
