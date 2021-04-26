@@ -12,9 +12,10 @@
                 
                 "task3": "hw 2 task 3 je vagyok"
                 },
-        "answers": {
-            "answer1": "hw 2 answer 1 je vagyok",
-            "answer2": "hw 2 answer 2 je vagyok"
+        "keys": {
+            "key1": "hw 2 key 1 je vagyok",
+            "key2": "hw 2 key 2 je vagyok",
+            "key3": "hw 2 key 3 je vagyok"
         }
     },
     {
@@ -25,9 +26,9 @@
                 
                 "task2": "hw 3 task 2 je vagyok"
                 },
-        "answers": {
-            "answer1": "hw 3 answer 1 je vagyok",
-            "answer2": "hw 3 answer 2 je vagyok"
+        "keys": {
+            "key1": "hw 3 key 1 je vagyok",
+            "key2": "hw 3 key 2 je vagyok"
         }
     },
     {

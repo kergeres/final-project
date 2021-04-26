@@ -109,3 +109,29 @@
 }
 
 
+#next
+{width: 200px;
+    height: 100px;
+}
+
+table tr th
+{
+/* border-left: 1px solid green;
+border-top: 1px solid green; */
+min-width: 50px;
+padding: 10px;
+}
+
+table 
+{
+    margin: 0 auto;
+    transform: translateX(50%);
+    position: absolute;
+
+    /* border-right: 1px solid green; */
+}
+
+.wrong-answer
+{
+    border: 1px solid var(--danger);
+}

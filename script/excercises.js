@@ -13,7 +13,8 @@ async function loadData() {
 async function init()
 {
     await loadData();
-    console.log(databaseOut); 
+   
+  
 }
 
 init();
@@ -31,7 +32,7 @@ function appendExcercises(databaseIn)
 }
 
 
-let chosenArray = ["empty"];
+let chosenArray = ["jeg er empty"];
 // identify the chosen excercise and calls the function which displays the tasks
 function openExcercise(excId)
 {
@@ -44,12 +45,19 @@ function openExcercise(excId)
     }
 }
 let slidenumber = 1;
+let answersFromUser = [];
 // take the next slide on the Next click, calls the function which displays them
 document.querySelector("#next").addEventListener('click', function ()
 {
+   
+    let answer = document.querySelector("#answer").value 
+    let idPlusAns = {};
+    idPlusAns [slidenumber] = answer;
+    answersFromUser.push(idPlusAns)
     slidenumber++;
     appendSlides(slidenumber)
-    console.log("number of slides: " + slidenumber);
+
+    
 })
 
 // ¨displays all of the slides
@@ -60,27 +68,31 @@ function appendSlides(slideNr)
     let lengthOfTasks = 0
     let htmlTemplate = "";
     for (let ubolt of chosenArray) {
-
+let stuff = ubolt[0].tasks[`task${slideNr}`]
        
-        htmlTemplate= ubolt[0].tasks[`task${slideNr}`];
+        htmlTemplate=  `<p>${stuff}</p>
+        <input id="answer" type="input">
+        ` ;
         // Get the size of an the chosen excercise size (length)
         lengthOfTasks = Object.size(ubolt[0].tasks)
-        console.log("ennyi task van ebben a tombben: " +lengthOfTasks);
+        
         
      }
      if(slideNr <= lengthOfTasks)
      {
 
         document.querySelector(".exc-container").innerHTML = htmlTemplate;
+      
      }
 
      else
      {
         document.querySelector(".exc-container").innerHTML = "vege";
+        displayRecentAnswers (answersFromUser)
      }
 }
 
-
+// counting the length of the tasks 
 
 Object.size = function(obj) {
     var size = 0,
@@ -91,3 +103,63 @@ Object.size = function(obj) {
     return size;
   };
   
+
+let szamok = 1;
+// function nemtom (taskId)
+// {
+//     for (const iti of chosenArray) {
+//       console.log(taskId);
+//         if (iti[0].tasks[`task${taskId}`].slice(4)== taskId)
+//       {
+//         return iti[0].tasks[`task${taskId}`]
+//         // console.log(iti[0].tasks[`task${taskId}`]);
+      
+//       }
+      
+//     }
+// }
+
+function nemtom (taskId)
+{
+    for (const iti of chosenArray) {
+     
+        return iti[0].keys[`key${taskId}`]
+        // console.log(iti[0].tasks[`task${taskId}`]);
+    }
+}
+
+// display the results of the excercises after the slideshow of the excercise
+  let counter = 1;
+  function displayRecentAnswers (ansIn)
+  {
+      let htmlTemplate=""
+    
+      for (const run of ansIn) 
+     { 
+          let tasksKey =  nemtom(counter)
+          console.log(tasksKey);
+        
+          htmlTemplate += `<tr><th>${Object.keys(run)}</th><th id="userAnswer"> ${run[counter]}</th><th>jo: ${tasksKey}</th></tr>`
+          console.log(Object.keys(run));
+          
+          counter++;
+          
+          for (const fut of chosenArray) {
+              if (1==1)
+              {
+                  console.log(chosenArray);
+                  
+              }
+          { 
+             
+              console.log("kérem " + run[0] );
+          }
+          }
+      }
+    document.querySelector(".exc-container").innerHTML = `<table>${htmlTemplate}</table>` 
+   
+  }
+
+
+//   na valamiert a nemtom function a 128 sorban csak egyszer hivodik le vagy mi. pedig loopban 
+// van es ezert le kene fusson annyiszor mint a tobbi tolog ott felette..
