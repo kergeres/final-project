@@ -53,16 +53,63 @@
 
 }
 
+.fas
+{
+    border: 1px solid var(--gray);
+    font-size: 20px;
+    border-radius: 25px;
+    padding: 15px;transition: .5s;
+}
+.fas:hover
+{
+    border: 1px solid var(--teal);
+   background-color:var(--teal) ;
+}
 
+.hnav-point {
+    margin: 5px 25px;
+    font-size: 20px;
+    font-family: 'Segoe UI';
+  
+    color: var(--gray-dark)
+}
+
+/* .hnav-point:hover {
+    color: black
+} */
+.hnav-point:hover  .fas{
+    
+    border: 1px solid var(--teal);
+   background-color:var(--teal) ;
+}
 a {
     text-decoration: none;
 }
 
+.btn
+{
+    background-color: #399b75;
+    color: white;
+  cursor: pointer;
+    border: none;
+    padding: 5px 30px;
+    font-size: 20px;
+    border-radius: 3px;
+    
+}
+.logo
+{
+    width: 90px;
+    left: 60px;
+    position: relative;
+    top: -15px;
+    cursor: pointer;
+}
 header {
     display: flex;
     background-image: url("../img/Group\ 17.jpg");
     justify-content: space-between;
-    height: 110px;
+    height: 140px;
     background-size: 100%;
     background-repeat: no-repeat;
     z-index: 999;
@@ -79,17 +126,7 @@ header div {
 
 }
 
-.hnav-point {
-    margin: 5px 25px;
-    font-size: 20px;
-    font-family: 'Segoe UI';
-    text-transform: uppercase;
-    color: #303030;
-}
 
-.hnav-point:hover {
-    color: #101010
-}
 
 .bg-top {
     width: 100%;
@@ -175,12 +212,24 @@ nav p:hover {
 
 .title {
     text-align: center;
-    color: #303030;
+    color: #555555;
     font-family: roboto;
     text-transform: uppercase;
-    margin-top: -30px;
+    margin-top: 0px;
     margin-bottom: 60px;
 }
+
+.ans-input
+{
+    border-radius: 3px;
+    height: 40px;
+    width: 150px;
+    margin-top: 5px;
+    border: 1px solid #92d4d3;
+    text-indent: 10px;
+    font-size: 20px;
+}
+.input
 
 h1 {
     text-align: center;

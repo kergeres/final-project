@@ -15,7 +15,7 @@
   firebase.initializeApp(firebaseConfig);
   
   const auth = firebase.auth();
-
+ 
   
   const db = firebase.firestore();
 
@@ -39,7 +39,11 @@ function fireBaseSignup() {
     
     let passInput = document.querySelector("#passwords").value
     let emailInput = document.querySelector("#emails").value
-    auth.createUserWithEmailAndPassword(emailInput, passInput)
+    auth.createUserWithEmailAndPassword(emailInput, passInput) .then((userCredential) => {
+        // Signed in 
+        var user = userCredential.user;
+        
+      })
 
 }
 
@@ -91,11 +95,24 @@ function logIn ()
 
     if (passInput !== "" && emailInput !=="")
     {
-        fireBaseLogIn();
-        sayLoudly("you loging in")
-        window.open("sub/contact.html", "_self");
+        fireBaseLogIn()
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user != null)
+                {
+                    window.open("sub/contact.html", "replace")
+                }
+          });
+           
+
+    
         
-    }
+
+
+        
+        
+        
+    } 
     else if (passInput == "" && emailInput =="")
     {
         sayLoudly("Email and password is required.")
@@ -213,13 +230,33 @@ function appendLogIn()
 }
 
 function logout() {
-    auth.signOut().then(() => {
-        if (user)
-        {
-            alert("kileptel")
-        }
-     
-    })
-   
+
+    auth.signOut()
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user==null)
+            {
+                window.open("../index.html", "replace")
+            }
+      });
+
+
+
+    // let user = firebase.auth().currentUser
+
+    
+    // auth.signOut().then(() => {
+    //     // Signed in
+    //     // var user = userCredential.user;
+    //     if (user==null)
+    //     {
+    //         window.open("../index.html", "replace")
+    //     }
+    //   })
       
+
+  
+        
+     
+  
+    
       }

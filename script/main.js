@@ -37,17 +37,19 @@ function hamburgerNav() {
 // load excercises
 const _programs = [];
 
-// async function loadData() {
-//   let response = await fetch("/data/json.json");
-//   let jsonData = await response.json();
-//   _programs.push(jsonData);
-// console.log(_programs);
-// console.log(jsonData);
-//   appendNav(jsonData)
-//   appendProfile(jsonData)
-// }
 
-// console.log(_programs);
+// ez igy ki volt kommentelve, most nem tudom epp mire van
+async function loadData() {
+  let response = await fetch("/data/json.json");
+  let jsonData = await response.json();
+  _programs.push(jsonData);
+console.log(_programs);
+console.log(jsonData);
+  appendNav(jsonData)
+  appendProfile(jsonData)
+}
+
+console.log(_programs);
 
 
 
@@ -108,16 +110,16 @@ function whereIsTheFocus()
 
 // szoval kommenteld ki
 
-// Teyt to Speach function
-// function sayLoudly(e)
-// {
-// if (e.target !==e.currentTarget)
-// {
-//   let focusedItem = e.target.innerHTML;
-//   responsiveVoice.speak(focusedItem)
-// }
-// e.stopPropagation();
-// }
+// Text to Speach function
+function sayLoudly(e)
+{
+if (e.target !==e.currentTarget)
+{
+  let focusedItem = e.target.innerHTML;
+  responsiveVoice.speak(focusedItem)
+}
+e.stopPropagation();
+}
 
 
 
