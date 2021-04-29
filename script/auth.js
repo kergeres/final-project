@@ -15,26 +15,11 @@
   firebase.initializeApp(firebaseConfig);
   
   const auth = firebase.auth();
- 
-  
+
   const db = firebase.firestore();
 
   db.settings({timestamsInSnapshots: true});
-//   auth.onAuthStateChanged(user => 
-//     {
-//         if (user)
-//         {
-//             alert(user)
-//             console.log(user);
-//         }
-//         else if (!user)
-//         {
-//             alert(user)
-//            console.log(user);
-            
-//         }
-        
-//     })
+
 function fireBaseSignup() {
     
     let passInput = document.querySelector("#passwords").value
@@ -46,6 +31,41 @@ function fireBaseSignup() {
       })
 
 }
+
+let zample = 1;
+let n = new Date()
+
+
+
+
+
+
+  function firestoreUpload() {
+
+    let user = firebase.auth().currentUser;
+    //create a new collection insede the user collection
+
+    db.collection("user").doc(user.uid).set({
+      date: n, //currect date
+      number: zample,
+      email: user.email,
+      //baskets number
+    },  {merge: true} ).then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    
+  }
+
+
+
+
+
+
+
+
 
 // function playAudo() {
 //     let music = document.querySelector("#audi");
@@ -240,23 +260,6 @@ function logout() {
       });
 
 
-
-    // let user = firebase.auth().currentUser
-
-    
-    // auth.signOut().then(() => {
-    //     // Signed in
-    //     // var user = userCredential.user;
-    //     if (user==null)
-    //     {
-    //         window.open("../index.html", "replace")
-    //     }
-    //   })
-      
-
-  
-        
-     
   
     
       }

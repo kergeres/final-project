@@ -1,6 +1,24 @@
 "use strict";
 // igazabol a   CSS en kivul kb majdnem minden kesz. nyilvan nem..
 
+var firebaseConfig = {
+    apiKey: "AIzaSyBfl3DJEQWOOLGoNp7jnXfXQ8sqcZotTlQ",
+    authDomain: "vizsga-d5490.firebaseapp.com",
+    projectId: "vizsga-d5490",
+    storageBucket: "vizsga-d5490.appspot.com",
+    messagingSenderId: "883855947361",
+    appId: "1:883855947361:web:d9544d6793d395010e1c20",
+    measurementId: "G-TJM6MVKKES"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  const auth = firebase.auth();
+
+  const db = firebase.firestore();
+
+  db.settings({timestamsInSnapshots: true});
+
 // Fetches the excercises content (homeworks) from database
 let databaseOut = [];
 async function loadData() {
@@ -32,6 +50,7 @@ function appendExcercises(databaseIn)
 
 // identify the chosen excercise and calls the function which displays the chosen excercise tasks
 let chosenArray = ["jeg er empty"];
+let startdate = 0;
 function openExcercise(excId)
 {
     for (const fut of databaseOut) {
@@ -39,10 +58,24 @@ function openExcercise(excId)
         { 
             chosenArray.fill(databaseOut.slice(fut.id-1, fut.id));
             appendSlides(1)
-            document.querySelector("#taskx").focus() 
+            document.querySelector("#taskx").focus()
+            startdate = new Date()
+            vmi()
+           
+            
         } 
     }
 }
+
+function vmi()
+{
+    startdate = new Date()
+    
+}
+
+
+
+     
 
 let slidenumber = 1;
 let answersFromUser = [];
@@ -120,10 +153,12 @@ function nemtom (taskId)
     }
 }
 
+let idUanswerKex = []
 // display the results of the excercises after the slideshow of the excercise
   let counter = 1;
   function displayRecentAnswers (ansIn)
   {
+    
       let htmlTemplate=""
     
       for (const run of ansIn) 
@@ -132,25 +167,58 @@ function nemtom (taskId)
           console.log(tasksKey);
         
           htmlTemplate += `<tr><th>${Object.keys(run)}</th><th id="userAnswer"> ${run[counter]}</th><th>jo: ${tasksKey}</th></tr>`
-          console.log(Object.keys(run));
-         
-          
+        
+          idUanswerKex.push({"id":counter, "userAns": run[counter], "key": tasksKey})
           counter++;
-          
-          for (const fut of chosenArray) {
-              if (1==1)
-              {
-                  console.log(chosenArray);
-                  
-              }
-          { 
-             
-              console.log("kérem " + run[0] );
-          }
-          }
+
+        //   szerintem ez nem kell
+        //   for (const fut of chosenArray) {
+        //       if (1==1)
+        //       {
+        //           console.log(chosenArray);
+        //       }
+        //   { 
+        //       console.log("kérem " + run[0] );
+        //   }
+        //   }
       }
-    document.querySelector(".exc-container").innerHTML = `<table>${htmlTemplate}</table> <button id="gbck" onclick="init()" class="btn">Go back</button>` 
+      
+    document.querySelector(".exc-container").innerHTML = `<table>${htmlTemplate}</table> <button id="gbck"  onclick="window.location.href='excercises.html'"class="btn">Go back</button>`
+    
+  
+    firestoreUpload(idUanswerKex) 
     document.querySelector("#gbck").focus()  
+   
   }
 
+  let today = new Date()
+  let dd = new Date().getDate()
+  let mm = new Date().getMonth() +1
+  let yyyy = new Date().getFullYear()
+  let hh = new Date().getHours()
+  let mi = new Date().getMinutes()
 
+
+  let currentDate =  `${yyyy}-${mm}-${dd} at ${hh}:${mi}`  
+
+  
+    function firestoreUpload(idUanswerKex) {
+  
+      let user = firebase.auth().currentUser;
+      //create a new collection insede the user collection
+    
+      db.collection("user").doc(user.uid).set({
+        submitted: currentDate, 
+        excercise: idUanswerKex,
+        email: user.email,
+        duration: Math.floor( (startdate-today)/1000)
+        //baskets number
+      },  {merge: true} ).then(() => {
+          console.log("Document successfully written!");
+      })
+      .catch((error) => {
+          console.error("Error writing document: ", error);
+      });
+      
+    }
+  
