@@ -120,7 +120,7 @@ function logIn ()
         firebase.auth().onAuthStateChanged(function(user) {
             if (user != null)
                 {
-                    window.open("sub/contact.html", "replace")
+                    window.open("php/history.php", "replace")
                 }
           });
            
