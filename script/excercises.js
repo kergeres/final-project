@@ -43,6 +43,7 @@ function appendExcercises(databaseIn)
     for (let exc of databaseIn) {
         htmlTemplate += `
         <h1 onclick="openExcercise(${exc.id})" tabindex="1" class="exc-title">${exc.title}</h1>`;
+        
     }     
         document.querySelector(".exc-container").innerHTML = htmlTemplate;
 }
@@ -158,7 +159,7 @@ let idUanswerKex = []
   let counter = 1;
   function displayRecentAnswers (ansIn)
   {
-    
+    let title = "g"
       let htmlTemplate=""
     
       for (const run of ansIn) 
@@ -167,8 +168,13 @@ let idUanswerKex = []
           console.log(tasksKey);
         
           htmlTemplate += `<tr><th>${Object.keys(run)}</th><th id="userAnswer"> ${run[counter]}</th><th>jo: ${tasksKey}</th></tr>`
-        
-          idUanswerKex.push({"id":counter, "userAns": run[counter], "key": tasksKey})
+         
+          for (const iti of chosenArray) {
+     
+            title = iti[0].title
+          
+        }
+          idUanswerKex.push({"id":counter, "userAns": run[counter], "key": tasksKey} )
           counter++;
 
         //   szerintem ez nem kell
@@ -186,7 +192,7 @@ let idUanswerKex = []
     document.querySelector(".exc-container").innerHTML = `<table>${htmlTemplate}</table> <button id="gbck"  onclick="window.location.href='excercises.html'"class="btn">Go back</button>`
     
   
-    firestoreUpload(idUanswerKex) 
+    firestoreUpload(idUanswerKex, title) 
     document.querySelector("#gbck").focus()  
    
   }
@@ -198,20 +204,25 @@ let idUanswerKex = []
   let hh = new Date().getHours()
   let mi = new Date().getMinutes()
 
+  let se = today.getSeconds()
+
 
   let currentDate =  `${yyyy}-${mm}-${dd} at ${hh}:${mi}`  
+  let exactCurrentdate =  `${yyyy}-${mm}-${dd} ${hh}:${mi}:${se}`  
 
   
-    function firestoreUpload(idUanswerKex) {
+    function firestoreUpload(idUanswerKex, title) {
   
       let user = firebase.auth().currentUser;
       //create a new collection insede the user collection
     
-      db.collection("user").doc(user.uid).set({
+      db.collection("user").doc(user.uid).set({[exactCurrentdate]: {
         submitted: currentDate, 
         excercise: idUanswerKex,
         email: user.email,
-        duration: Math.floor( (startdate-today)/1000)
+        duration: Math.floor( (startdate-today)/1000),
+        title: title}
+        
         //baskets number
       },  {merge: true} ).then(() => {
           console.log("Document successfully written!");
