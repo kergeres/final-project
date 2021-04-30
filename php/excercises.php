@@ -25,15 +25,7 @@
 <div class="content-container badi">
 <h1 class="title">Excercises</h1>
 <div class="exc-container">
- 
-    <!-- alul a template van. kell -->
 
-<!-- <div class="bar">cs</div>
-<p>Bár a rendelkezésre álló adatok alapján Magyarországon már tetőzött a harmadik hullám, az elmúlt napokban pedig már leszálló ágban van a járvány, hátradőlni még biztosan nem lehet, szerdán is rekordsok halálozást jelentettek a koronavírus miatt, igaz, Müller Cecília ezt később azzal magyarázta, hogy egyfajta adattorlódás történt.</p>
-
-<input class="answerinput" placeholder=" answer"> 
-<button class="excnav excnav-right ">back</button>
-<button class="excnav excnav-left ">next</button> -->
 
 </div>
 
@@ -51,9 +43,9 @@
 <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
 
 
-<script src="../script/excercises.js"></script>
+<script type="text/javascript" src="../excercises.js"></script>
 <script src="../script/auth.js"></script>
-<script src="../script/main.js"></script>
+<script type="text/javascript" src="../script/main.js"></script>
     
     
 </body>

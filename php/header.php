@@ -1,5 +1,5 @@
 <header>
-            <img src="../img/Asset 2.svg" class="logo">
+            <img src="/img/Asset 2.svg" class="logo">
             <div >
             <a class="hnav-point" href="history.php"><i class="fas fa-history"></i>History</a>
             
@@ -8,7 +8,6 @@
             <a tabindex="1" onclick="logout()" id="logout" class="hnav-point"><i class="fas fa-sign-out-alt"></i>log out</a>
             
         </div>
-        
           </header>
           <!-- <img src="../img/bg-top.jpg" class="bg-top"> -->
     <nav class="badi nnav">
