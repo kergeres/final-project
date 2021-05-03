@@ -48,12 +48,89 @@
     margin: 0 auto;
 }
 
-.exc-container {
 
-    width: 800px;
-    height: 500px;
-    position: relative;
+.exc-containerr {
+    width: 98vw;
+    height: 98vh;
+    margin-left: 50%;
+    z-index: 2000;
+    top: -238px;
+    position: fixed;
+    transform: translatex(-50%);
+    transition: 3s;
+   justify-content: center;
+   display: flex;
+   padding: 20px;
+   background-color: #B2CBB2;
+
+   
 }
+.res-table
+{
+    /* ffdf */
+    
+}
+.animo
+{
+    animation: open-exc-ani .3s forwards ease-in-out;
+}
+.proc-table
+{
+    border: none;
+    position: absolute;
+    right: -180px;
+    top: 45px;
+    width: 30px;
+    text-decoration: none;
+    color: rgb(73, 73, 73);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: bolder;
+   
+}
+
+.proc-table td
+{
+    border: none;
+  
+   
+}
+
+
+.pad-container
+{
+width: 470px;
+height: 520px;
+display: block;
+position: relative;
+padding: 40px 60px;
+background-color: white;
+border-radius: 30px;
+-webkit-box-shadow: 5px 6px 15px 5px rgba(146,146,146,0.6); 
+box-shadow: 5px 6px 15px 5px rgba(146,146,146,0.6);
+
+}
+#taskx
+{
+    font-size: 14px;
+}
+.iksz
+{
+    font-size: 35px;
+    position: fixed;
+    top:10px;
+    right: 20px;
+    opacity: .6;
+    color: #303030 ;
+    cursor: pointer;
+    transition: .5s;
+}
+.iksz:hover{
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+
 
 .excnav {
     width: 140px;
@@ -100,12 +177,17 @@
     font-size: 1rem;
     color: var(--secondary);
     cursor: pointer;
-    margin-top: 8px;
+    margin-top: 0px;
+    transition: .3s;
+    /* border: 1px solid black; */
+    height: 28px;
+    text-align: center;
 }
 
 .exc-title:focus, .exc-title:hover
 {
     color: var(--dark-blue);
+    margin-left: 5px;
 }
 
 
@@ -113,8 +195,6 @@
 
 table tr th
 {
-/* border-left: 1px solid green;
-border-top: 1px solid green; */
 min-width: 50px;
 padding: 10px;
 }
@@ -122,7 +202,7 @@ padding: 10px;
 table 
 {
     margin: 0 auto;
-    transform: translateX(50%);
+   
     position: absolute;
 
     /* border-right: 1px solid green; */
@@ -132,3 +212,22 @@ table
 {
     border: 1px solid var(--danger);
 }
+
+@keyframes open-exc-ani {
+    0% {
+      opacity: 0;
+      width: 700px;
+      height: 600px;
+      
+    }
+    80%
+    {
+opacity: .5;
+    }
+    100% {
+      opacity: 1;
+      width: 98vw;
+      height: 98vh;
+      
+    }
+  }

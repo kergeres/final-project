@@ -45,7 +45,7 @@ function appendExcercises(databaseIn)
         <h1 onclick="openExcercise(${exc.id})" tabindex="1" class="exc-title">${exc.title}</h1>`;
         
     }     
-        document.querySelector(".exc-container").innerHTML = htmlTemplate;
+        document.querySelector(".exc-container").innerHTML = htmlTemplate ;
 }
 
 
@@ -96,6 +96,15 @@ document.querySelector("#next").addEventListener('click', function ()
    
     document.querySelector("#taskx").focus() 
     
+    if (slidenumber != 1)
+    {
+      document.querySelector(".exc-containerr").classList.remove("animo")
+      document.querySelector(".taskx").classList.remove("taskx-anima")
+      document.querySelector(".ans").classList.remove("taskx-anima")
+      
+    }
+      
+    
 })
 }
 // ¨displays all of the slides
@@ -103,16 +112,28 @@ document.querySelector("#next").addEventListener('click', function ()
 function appendSlides(slideNr)
 {
     let lengthOfTasks = 0
+    let counter = chosenArray.length
     let htmlTemplate = "";
     for (let ubolt of chosenArray) {
-    let stuff = ubolt[0].tasks[`task${slideNr}`]
+      let counter = ubolt[0].tasks
+    let taskX = ubolt[0].tasks[`task${slideNr}`]
     
-        htmlTemplate=  `<p tabindex="0" id="taskx" >${stuff}</p>
-        <input id="answer" class="ans-input" type="input">
-        <button type="button"  class="btn" id="next">Next</button>
+        htmlTemplate=  `<div class="exc-containerr animo"><div class="pad-container">
+       <a href="excercises.html"> <span class="iksz">&#10005;</span></a>
+       <table class="proc-table">
+       <tr><td class="proc taskx-anima">${slideNr}</td><td class="proc ">/${Object.size(ubolt[0].tasks)}</td></tr>
+       
+       </table>
+       
+       <p class="proc taskx-anima" ></p>
+       <p class="proc"></p>
+        <p tabindex="0" class="taskx-anima" id="taskx" >${taskX}</p>
+        <input autocomplete="off" id="answer" class="ans-input ans taskx-anima" type="input"/>
+        <button type="button"  class="btn pag-btn" id="next">Next</button></div></div>
         ` ;
         // Get the size of an the chosen excercise size (length)
         lengthOfTasks = Object.size(ubolt[0].tasks)
+        
        
         
      }
@@ -189,7 +210,7 @@ let idUanswerKex = []
         //   }
       }
       
-    document.querySelector(".exc-container").innerHTML = `<table>${htmlTemplate}</table> <button id="gbck"  onclick="window.location.href='excercises.html'"class="btn">Go back</button>`
+    document.querySelector(".exc-container").innerHTML = `<div class="exc-containerr"><div class="pad-container"> <a href="excercises.html"> <span class="iksz">&#10005;</span></a><table class="res-table taskx-anima">${htmlTemplate}</table> <button id="gbck"  onclick="window.location.href='excercises.html'"class="btn pag-btn">Go back</button></div></div>`
     
   
     firestoreUpload(idUanswerKex, title) 

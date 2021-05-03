@@ -141,35 +141,6 @@ document.addEventListener("keyup", function(event) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ez nemtudom hogy kell e? ha nem akkor torold ki te majom.. amugy valami navval kapcsoalt
 // function appendProfile(tomb)
 // {

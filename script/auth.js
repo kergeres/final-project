@@ -115,12 +115,24 @@ function logIn ()
 
     if (passInput !== "" && emailInput !=="")
     {
-        fireBaseLogIn()
+         let passInput = document.querySelector("#password").value
+    let emailInput = document.querySelector("#email").value
+
+    auth.signInWithEmailAndPassword(emailInput, passInput).then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      });
+}
 
         firebase.auth().onAuthStateChanged(function(user) {
             if (user != null)
                 {
-                    window.open("php/history.php", "replace")
+                    window.open("sub/contact.html", "replace")
                 }
           });
            

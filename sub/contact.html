@@ -7,6 +7,7 @@
     <meta name="author" content="">
     <title>oktatas</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/contact.css">
     <link rel="shortcut icon" type="image/svg" href=""/>
     <link rel="stylesheet" href="https://use.typekit.net/dcf6lag.css">
 
@@ -22,20 +23,18 @@
         <header>
             <img src="/img/Asset 2.svg" class="logo">
             <div >
-            <a class="hnav-point">History</a>
+            <a tabindex="0" class="hnav-point"  href="history.html"><i class="fas fa-history"></i>History</a>
             
-            <a class="hnav-point" href="excercises.html">Excercises</a>
-            <a class="hnav-point" href="excercises.html">contact</a>
-            <a tabindex="1" onclick="logout()" id="logout" class="hnav-point">log out</a>
+            <a tabindex="0" class="hnav-point" href="excercises.html"><i class="fas fa-book"></i></i>Excercises</a>
+            <a tabindex="0" class="hnav-point" href="contact.html"><i class="fas fa-phone-alt"></i>Contact</a>
+            <a tabindex="1" onclick="logout()" id="logout" class="hnav-point"><i class="fas fa-sign-out-alt"></i>log out</a>
             
         </div>
         
+        
           </header>
           <!-- <img src="../img/bg-top.jpg" class="bg-top"> -->
-    <nav class="badi nnav">
-       
-       
-    </nav>
+
     <div class="ham-cont" onclick="hamburgerNav()">
         <label for="mobileicon" class="ham-menu-lineb"></label>
         <label for="mobileicon" class="ham-menu-line"></label>
@@ -44,17 +43,26 @@
         </div>
         <main>
 <div class="content-container badi">
+  
 <h1 class="title">CONTACT</h1>
-<!-- <hr class="hr1"> -->
+<div class="exc-container">
+<h2>Write me a message</h2>
 <hr class="hr2">
-<div class="small-content-container">
-    <p tabindex="1"> Test speach Every kind of speach
-    </p>
+<form class="msg-form">
+    
+    <input autocomplete="off" placeholder="Subject" class="cont-input" id="subject">
+    
+    <textarea autocomplete="off" placeholder="Message" class="cont-input msg" id="message" ></textarea>
+    <button class="btn">Send</button>
+</form>
+<h2>Make a video call</h2>
+<hr class="hr2">
+<img class="vd-call-icon" src="/img/Icon%20material-account-circle.svg">
+<h1 class="name-tag">Molnár Veronika</h1>
+<button class="btn ah" >Make a call</button>
 
-    <button onclick="firestoreUpload()">pushToFirestore</button>
-</div> 
+</div></div>
 </div>
-
 </main>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
