@@ -25,7 +25,9 @@ async function loadData() {
     let response = await fetch("../data/json.json");
     let jsonData = await response.json();
     databaseOut = jsonData;
-    appendExcercises(databaseOut);
+    // appendExcercises(databaseOut);
+    // jsonto (databaseOut) 
+
   }
 
 // call the fetch function.
@@ -36,16 +38,37 @@ async function init()
 init();
 
 
+const userRef = db.collection("exercises");
+  
+  // watch the database ref for changes
+  let resultArray = []
+  userRef.orderBy("id").onSnapshot(function (snapshotData) {
+resultArray = []
+    snapshotData.forEach(doc => {
+      let ex = doc.data();
+      // ex.id = doc.id;              ez lehet hogy kurvara kell
+      // console.log(ex.id);
+      resultArray.push(ex);
+    });
+    appendExcercises(resultArray);
+  
+  });
+
+
+
+let nr = ""
 // display the excercise list
 function appendExcercises(databaseIn) 
 {
     let htmlTemplate = "";
     for (let exc of databaseIn) {
+   
         htmlTemplate += `
-        <h1 onclick="openExcercise(${exc.id})" tabindex="1" class="exc-title">${exc.title}</h1>`;
+        <h1 onclick="openExcercise('${exc.id}')" tabindex="1" class="exc-title">${exc.title}</h1>`;
         
     }     
         document.querySelector(".exc-container").innerHTML = htmlTemplate ;
+        showLoader(false)
 }
 
 
@@ -54,6 +77,7 @@ let chosenArray = ["jeg er empty"];
 let startdate = 0;
 function openExcercise(excId)
 {
+  console.log(excId);
     for (const fut of databaseOut) {
         if (fut.id == excId)
         { 
@@ -237,12 +261,13 @@ let idUanswerKex = []
       let user = firebase.auth().currentUser;
       //create a new collection insede the user collection
     
-      db.collection("user").doc(user.uid).set({[exactCurrentdate]: {
+      db.collection("user").doc().set({
         submitted: currentDate, 
         excercise: idUanswerKex,
         email: user.email,
         duration: Math.floor( (startdate-today)/1000),
-        title: title}
+        title: title,
+        uid: user.uid
         
         //baskets number
       },  {merge: true} ).then(() => {
@@ -253,4 +278,35 @@ let idUanswerKex = []
       });
       
     }
+
+
+function jsonto (exercises)
+{
+  db.collection("exercises").doc().set({
+    exercises
+  })
+}
+
+
+    // function firestoreUpload(idUanswerKex, title) {
+  
+    //   let user = firebase.auth().currentUser;
+    //   //create a new collection insede the user collection
+    
+    //   db.collection("user").doc(user.uid).set({[exactCurrentdate]: {
+    //     submitted: currentDate, 
+    //     excercise: idUanswerKex,
+    //     email: user.email,
+    //     duration: Math.floor( (startdate-today)/1000),
+    //     title: title}
+        
+    //     //baskets number
+    //   },  {merge: true} ).then(() => {
+    //       console.log("Document successfully written!");
+    //   })
+    //   .catch((error) => {
+    //       console.error("Error writing document: ", error);
+    //   });
+      
+    // }
   

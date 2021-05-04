@@ -20,39 +20,53 @@ var firebaseConfig = {
   const userRef = db.collection("user");
   
   // watch the database ref for changes
-  userRef.onSnapshot(function (snapshotData) {
-    let completedTasks = [];
-    snapshotData.forEach(function (doc) {
-      let user = doc.data();
-     
-      let mostani = firebase.auth().currentUser;
-      user.id = doc.id;
-      if (user.id == mostani.uid) {
-        completedTasks.push(user);
-      }
-      
+  let resultArray = []
+  userRef.orderBy("submitted").onSnapshot(function (snapshotData) {
+resultArray = []
+    snapshotData.forEach(doc => {
+      let ex = doc.data();
+      ex.id = doc.id;
+      // console.log(ex.id);
+      resultArray.push(ex);
     });
-    appendExcercises(completedTasks);
+    appendExcercises(resultArray);
   });
+
+    
+  
 
 
 // display the excercise list
-function appendExcercises(databaseIn = []) 
+function appendExcercises(databaseIn) 
 {
   
-    // let htmlTemplate = "";
-    // for (let exc of databaseIn) {
-    //     htmlTemplate += `
-    //     <p onclick="openExcercise(${exc.id})" tabindex="1" class="exc-title">${exc[0]} - <b> ${exc.submitted}</b></p>`;
+    let htmlTemplate = "";
+    for (let exc of databaseIn) {
+      let idBySec = exc.duration
+      
+      if (exc.uid == firebase.auth().currentUser.uid)
+      {
+        htmlTemplate += `
+        <p onclick="resultCheck(${idBySec})" tabindex="1" class="exc-title">${exc.uid} - <b> ${exc.submitted}</b></p>`;
         
-        
-    //     console.log(exc["title"])
-
+      }
+      // else if (1==1)
+      // {
+      //   alert()
+      // }
        
-    // }     
-    //     document.querySelector(".exc-container").innerHTML = htmlTemplate;
+    }     
+    showLoader(false)
+        document.querySelector(".exc-container").innerHTML = htmlTemplate;
+        
 }
 
 
 
-// 45 sornal nem az openexc fuggvenyt kene hivni hanem valamit ami kiirja a valamit
+function resultCheck(idIn)
+{ 
+  console.log(idIn)
+  // console.log(resultArray);
+  
+
+}

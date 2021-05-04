@@ -1,6 +1,15 @@
 "use strict";
 
 // hamburger menu animation
+function showLoader(show) {
+  let loader = document.querySelector('#loader');
+  if (show) {
+    loader.classList.remove("hide");
+  } else {
+    loader.classList.add("hide");
+  }
+}
+
 let cbOpen = true;
 function hamburgerNav() {
  
@@ -39,17 +48,17 @@ const _programs = [];
 
 
 // ez igy ki volt kommentelve, most nem tudom epp mire van
-async function loadData() {
-  let response = await fetch("/data/json.json");
-  let jsonData = await response.json();
-  _programs.push(jsonData);
-console.log(_programs);
-console.log(jsonData);
-  appendNav(jsonData)
-  appendProfile(jsonData)
-}
+// async function loadData() {
+//   let response = await fetch("/data/json.json");
+//   let jsonData = await response.json();
+//   _programs.push(jsonData);
+// console.log(_programs);
+// console.log(jsonData);
+//   appendNav(jsonData)
+//   appendProfile(jsonData)
+// }
 
-console.log(_programs);
+// console.log(_programs);
 
 
 
@@ -94,7 +103,7 @@ function tabEventList ()
       for (i = 0; i < x.length; i++) 
       {
         x[i].addEventListener("focusin", sayLoudly, false )
-        // x[i].addEventListener("focusin", whereIsTheFocus )
+        
       }
 }
 tabEventList () 

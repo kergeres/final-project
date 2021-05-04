@@ -127,7 +127,7 @@ function logIn ()
         var errorCode = error.code;
         var errorMessage = error.message;
       });
-}
+
 
         firebase.auth().onAuthStateChanged(function(user) {
             if (user != null)
@@ -137,11 +137,6 @@ function logIn ()
           });
            
 
-    
-        
-
-
-        
         
         
     } 

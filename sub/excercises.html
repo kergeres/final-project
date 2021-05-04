@@ -27,7 +27,7 @@
             
             <a tabindex="0" class="hnav-point" href="excercises.html"><i class="fas fa-book"></i></i>Excercises</a>
             <a tabindex="0" class="hnav-point" href="contact.html"><i class="fas fa-phone-alt"></i>Contact</a>
-            <a tabindex="1" onclick="logout()" id="logout" class="hnav-point"><i class="fas fa-sign-out-alt"></i>log out</a>
+            <a tabindex="0" onclick="logout()" id="logout" class="hnav-point"><i class="fas fa-sign-out-alt"></i>log out</a>
             
         </div>
         
@@ -40,6 +40,10 @@
         <label for="mobileicon" class="ham-menu-linea"></label>
   
         </div>
+        
+          
+    
+        
         <main>
 <div class="content-container badi">
 <h1 class="title">Excercises</h1>
@@ -59,7 +63,8 @@
 
 </div> 
 
-
+<div id="loader">
+    <div class="spinner"></div>
 </main>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
@@ -67,7 +72,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
 
 
-<!-- <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script> -->
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
 
 
 <script src="../script/excercises.js"></script>
