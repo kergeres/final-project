@@ -50,12 +50,12 @@ function appendExcercises(databaseIn)
         lengthOfTasks = Object.size(exc['excercise'])
         console.log(lengthOfTasks);
         htmlTemplate += `
-        <p onclick="resultCheck('${exc.id}'); andLength ('${exc.id}')" tabindex="1" class="exc-title">${exc.id} - <b> ${exc.title}</b></p>`;
-    
-        console.log();
+      
+       <tr onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
+        
     }     
     showLoader(false)
-        document.querySelector(".exc-container").innerHTML = htmlTemplate;
+        document.querySelector(".exc-container").innerHTML = `<table class="history-table">${htmlTemplate}</table>`
         
 }
 }
@@ -96,10 +96,11 @@ sliceTomb = resultArray.find(rightArray)
         if (sliceTomb['excercise'][k]['key'] != 'undefined')
         {
           let activeClass = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? 'incorrect' : ''
-          
+          let incorrectTabindex = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? '1' : '0'
+
           console.log(sliceTomb['excercise'][k]['key']);
           markup += `
-          <tr><td><strong>${sliceTomb['excercise'][k]['key']}</strong></td><td class="${activeClass}">${sliceTomb['excercise'][k]['userAns']}</td></tr>
+          <tr><td>${k+1}.</td><td onfocus="sayLoudly('your answer:${sliceTomb['excercise'][k]['userAns']}. correct answer: ${sliceTomb['excercise'][k]['key']}')" tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           
           `
         }
@@ -107,25 +108,8 @@ sliceTomb = resultArray.find(rightArray)
        
       }
 
-      
-      
-    
-      
-     
-     
-    
 
-
-  //  for (const iti of sliceTomb) {
-     
-  //    console.log(iti.title);
-  //     markup += `
-  //     <tr><td><strong>${iti.excercise[szam]['key']}</strong></td><td class="">${iti.excercise[szam]['userAns']}</td></tr>
-      
-  //     `
-      
-  //  }
-   document.querySelector(".exc-container").innerHTML = `<table>${markup}</table> `;
+   document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}</table> `;
    lengthOfTasks =0
     
   };

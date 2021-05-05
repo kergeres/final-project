@@ -45,8 +45,7 @@ userRef.orderBy("id").onSnapshot(function(snapshotData) {
   resultArray = []
   snapshotData.forEach(doc => {
     let ex = doc.data();
-    // ex.id = doc.id;              ez lehet hogy kurvara kell
-    // console.log(ex.id);
+   
     resultArray.push(ex);
   });
   appendExcercises(resultArray);
@@ -62,10 +61,18 @@ function appendExcercises(databaseIn) {
   for (let exc of databaseIn) {
 
     htmlTemplate += `
-        <h1 onclick="openExcercise('${exc.id}')" tabindex="1" class="exc-title">${exc.title}</h1>`;
+    <tr>
+    <td  onclick="openExcercise('${exc.id}')" tabindex="1">${exc.title}</td>
+    </tr>`;
 
   }
-  document.querySelector(".exc-container").innerHTML = htmlTemplate;
+  document.querySelector(".exc-container").innerHTML = `
+  <table class="exc-table">
+    <tr>
+      <td>
+      </td>
+    </tr>${htmlTemplate}
+  </table>` ;
   showLoader(false)
 }
 
@@ -177,11 +184,11 @@ Object.size = function(obj) {
 
 let szamok = 1;
 
-function nemtom(taskId) {
+function indexCounter(taskId) {
   for (const iti of chosenArray) {
 
     return iti[0].keys[`key${taskId}`]
-    // console.log(iti[0].tasks[`task${taskId}`]);
+
   }
 }
 
@@ -192,12 +199,13 @@ let counter = 1;
 function displayRecentAnswers(ansIn) {
   let title = "g"
   let htmlTemplate = ""
-
+let correctAnswerCounter = 0;
   for (const run of ansIn) {
-    let tasksKey = nemtom(counter)
-    console.log(tasksKey);
-
-    htmlTemplate += `<tr><th>${Object.keys(run)}</th><th id="userAnswer"> ${run[counter]}</th><th>jo: ${tasksKey}</th></tr>`
+    let tasksKey = indexCounter(counter)
+   
+    let activeClass = run[counter] != tasksKey ? 'incorrect' : ''
+    correctAnswerCounter = run[counter] == tasksKey ? correctAnswerCounter+1 : correctAnswerCounter
+    htmlTemplate += `<tr><td>${Object.keys(run)}</td><td class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>jo: ${tasksKey}</td></tr>`
 
     for (const iti of chosenArray) {
 
@@ -211,22 +219,32 @@ function displayRecentAnswers(ansIn) {
     })
     counter++;
 
-    //   szerintem ez nem kell
-    //   for (const fut of chosenArray) {
-    //       if (1==1)
-    //       {
-    //           console.log(chosenArray);
-    //       }
-    //   { 
-    //       console.log("kérem " + run[0] );
-    //   }
-    //   }
   }
+ let inPercent = `${ Math.round(correctAnswerCounter/(counter-1)*100)}%`
+ let inNumbers = `${correctAnswerCounter}/${(counter-1)}`
+  
+  document.querySelector(".exc-container").innerHTML = `
+  <div class="exc-containerr">
+    <div class="pad-container"> 
+      <a href="excercises.html">
+      <span class="iksz">&#10005;</span>
+      </a>
+      <table class="res-table taskx-anima">
+        <tr>
+          <td></td>
+          <td id="userAnswer">Answer</td><td>Key</td>
+        </tr>${htmlTemplate}
+        <tr>
+          <td></td>
+          <td>${inPercent}</td>
+       </tr>
+        </table> 
+        <button id="gbck" onclick="window.location.href='excercises.html'"class="btn pag-btn">Go back</button>
+      </div>
+    </div>`
 
-  document.querySelector(".exc-container").innerHTML = `<div class="exc-containerr"><div class="pad-container"> <a href="excercises.html"> <span class="iksz">&#10005;</span></a><table class="res-table taskx-anima">${htmlTemplate}</table> <button id="gbck"  onclick="window.location.href='excercises.html'"class="btn pag-btn">Go back</button></div></div>`
 
-
-  firestoreUpload(idUanswerKex, title)
+  firestoreUpload(idUanswerKex, title, inPercent, inNumbers)
   document.querySelector("#gbck").focus()
 
 }
@@ -236,16 +254,15 @@ let dd = new Date().getDate()
 let mm = new Date().getMonth() + 1
 let yyyy = new Date().getFullYear()
 let hh = new Date().getHours()
-let mi = new Date().getMinutes()
-
-let se = today.getSeconds()
+let mi = new Date().getMinutes() > 10 ? new Date().getMinutes() : `0${new Date().getMinutes()}`
 
 
-let currentDate = `${yyyy}-${mm}-${dd} at ${hh}:${mi}`
-let exactCurrentdate = `${yyyy}-${mm}-${dd} ${hh}:${mi}:${se}`
+
+let currentDate = `${yyyy}/${mm}/${dd} - ${hh}:${mi}`
 
 
-function firestoreUpload(idUanswerKex, title) {
+
+function firestoreUpload(idUanswerKex, title, result, inNumbers) {
 
   let user = firebase.auth().currentUser;
   //create a new collection insede the user collection
@@ -256,7 +273,9 @@ function firestoreUpload(idUanswerKex, title) {
       email: user.email,
       duration: Math.floor((startdate - today) / 1000),
       title: title,
-      uid: user.uid
+      uid: user.uid,
+      result: result,
+      inNumbers: inNumbers
 
       //baskets number
     }, {
@@ -286,29 +305,4 @@ function logout() {
     }
   });
 
-
-
-
 }
-
-// function firestoreUpload(idUanswerKex, title) {
-
-//   let user = firebase.auth().currentUser;
-//   //create a new collection insede the user collection
-
-//   db.collection("user").doc(user.uid).set({[exactCurrentdate]: {
-//     submitted: currentDate, 
-//     excercise: idUanswerKex,
-//     email: user.email,
-//     duration: Math.floor( (startdate-today)/1000),
-//     title: title}
-
-//     //baskets number
-//   },  {merge: true} ).then(() => {
-//       console.log("Document successfully written!");
-//   })
-//   .catch((error) => {
-//       console.error("Error writing document: ", error);
-//   });
-
-// }

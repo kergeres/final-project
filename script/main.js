@@ -129,10 +129,12 @@ if (e.target !==e.currentTarget)
 {
   let focusedItem = e.target.innerHTML;
   responsiveVoice.setDefaultRate(1.3);
-  responsiveVoice.speak(focusedItem, "UK English female", {rate: 1.3, volume: 1.2})
+  responsiveVoice.speak(focusedIte, "UK English Female")
 }
 e.stopPropagation();
 }
+
+
 // 
 
 

@@ -112,6 +112,57 @@
      color: red;
 
  }
+ .history-table, .exc-table, .res-table
+ {
+    margin-left: 50%;
+    transform: translateX(-50%);
+   position: relative;
+   min-width: 400px;
+   color:rgb(102, 102, 102);
+   cursor: pointer;
+  
+ }.history-table td, .exc-table td, .res-table td
+ {
+   border: none;
+   text-align: center;
+}
+ 
+ .history-table td:nth-child(1){
+    
+     width: 150px;
+     text-align: start;
+
+ } .exc-table td:nth-child(1){
+    
+     width: 150px;
+
+ }
+
+ .res-table td:nth-child(1)
+ {
+     width: 20px;
+     font-weight: bold;
+
+ }
+
+ .history-table tr:hover, .exc-table tr:hover
+ {
+      
+    color: teal;
+    
+}
+.res-table tr:hover
+{
+    cursor: text;
+}
+
+.res-table tr:nth-child(1)
+{
+    
+    height: 50px;
+    font-weight: bold;
+}
+ 
 .fas
 {
     border: 1px solid var(--gray);
