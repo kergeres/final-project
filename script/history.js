@@ -100,7 +100,7 @@ sliceTomb = resultArray.find(rightArray)
 
           console.log(sliceTomb['excercise'][k]['key']);
           markup += `
-          <tr><td>${k+1}.</td><td onfocus="sayLoudly('your answer:${sliceTomb['excercise'][k]['userAns']}. correct answer: ${sliceTomb['excercise'][k]['key']}')" tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
+          <tr><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td onfocus="sayLoudly('your answer:${sliceTomb['excercise'][k]['userAns']}. correct answer: ${sliceTomb['excercise'][k]['key']}')" tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           
           `
         }
@@ -109,7 +109,7 @@ sliceTomb = resultArray.find(rightArray)
       }
 
 
-   document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}</table> `;
+   document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td><td>Task</td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}<tr><td></td><td></td><td><strong class="result">${sliceTomb.result}</strong></td><td></td></tr></table>`;
    lengthOfTasks =0
     
   };

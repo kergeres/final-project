@@ -111,7 +111,7 @@ function pagination() {
 
 
   document.querySelector("#next").addEventListener('click', function() {
-    let answer = document.querySelector("#answer").value
+    let answer = document.querySelector("#answer").value != "" ? document.querySelector("#answer").value : "-"
     let idPlusAns = {};
     idPlusAns[slidenumber] = answer;
     answersFromUser.push(idPlusAns)
@@ -191,6 +191,13 @@ function indexCounter(taskId) {
 
   }
 }
+function indexCounterTask(taskId) {
+  for (const iti of chosenArray) {
+
+    return iti[0].tasks[`task${taskId}`]
+
+  }
+}
 
 let idUanswerKex = []
 // display the results of the excercises after the slideshow of the excercise
@@ -202,10 +209,11 @@ function displayRecentAnswers(ansIn) {
 let correctAnswerCounter = 0;
   for (const run of ansIn) {
     let tasksKey = indexCounter(counter)
+    let task = indexCounterTask(counter)
    
     let activeClass = run[counter] != tasksKey ? 'incorrect' : ''
     correctAnswerCounter = run[counter] == tasksKey ? correctAnswerCounter+1 : correctAnswerCounter
-    htmlTemplate += `<tr><td>${Object.keys(run)}</td><td class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>jo: ${tasksKey}</td></tr>`
+    htmlTemplate += `<tr><td>${Object.keys(run)}</td><td>${task}</td><td class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>${tasksKey}</td></tr>`
 
     for (const iti of chosenArray) {
 
@@ -215,7 +223,8 @@ let correctAnswerCounter = 0;
     idUanswerKex.push({
       "id": counter,
       "userAns": run[counter],
-      "key": tasksKey
+      "key": tasksKey,
+      "task": task
     })
     counter++;
 
@@ -232,9 +241,11 @@ let correctAnswerCounter = 0;
       <table class="res-table taskx-anima">
         <tr>
           <td></td>
+          <td>Task</td>
           <td id="userAnswer">Answer</td><td>Key</td>
         </tr>${htmlTemplate}
         <tr>
+        <td></td>
           <td></td>
           <td>${inPercent}</td>
        </tr>
