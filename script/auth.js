@@ -1,7 +1,6 @@
 "use strict";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  // web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBfl3DJEQWOOLGoNp7jnXfXQ8sqcZotTlQ",
     authDomain: "vizsga-d5490.firebaseapp.com",
@@ -13,9 +12,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  
   const auth = firebase.auth();
-
   const db = firebase.firestore();
 
   db.settings({timestamsInSnapshots: true});
@@ -24,54 +21,13 @@ function fireBaseSignup() {
     
     let passInput = document.querySelector("#passwords").value
     let emailInput = document.querySelector("#emails").value
-    auth.createUserWithEmailAndPassword(emailInput, passInput) .then((userCredential) => {
-        // Signed in 
-        var user = userCredential.user;
+    // auth.createUserWithEmailAndPassword(emailInput, passInput) .then((userCredential) => {
+    //     // Signed in 
+    //     var user = userCredential.user;
         
-      })
-
+    //   })
 }
 
-let zample = 1;
-let n = new Date()
-
-
-
-
-
-
-  function firestoreUpload() {
-
-    let user = firebase.auth().currentUser;
-    //create a new collection insede the user collection
-
-    db.collection("user").doc(user.uid).set({
-      date: n, //currect date
-      number: zample,
-      email: user.email,
-      //baskets number
-    },  {merge: true} ).then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-    
-  }
-
-
-
-
-
-
-
-
-
-// function playAudo() {
-//     let music = document.querySelector("#audi");
-//     // music.play();
- 
-// }
 
 // document.querySelector("#email").addEventListener("blur", checkMail)
 
@@ -116,23 +72,21 @@ function logIn ()
     if (passInput !== "" && emailInput !=="")
     {
          let passInput = document.querySelector("#password").value
-    let emailInput = document.querySelector("#email").value
+         let emailInput = document.querySelector("#email").value
 
-    auth.signInWithEmailAndPassword(emailInput, passInput).then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        // ...
-      })
+    auth.signInWithEmailAndPassword(emailInput, passInput)
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
+        sayLoudly(errorCode);
+        sayLoudly(errorMessage);
       });
 
 
-        firebase.auth().onAuthStateChanged(function(user) {
+        auth.onAuthStateChanged(function(user) {
             if (user != null)
                 {
-                    window.open("sub/contact.html", "replace")
+                    window.open("sub/excercises.html", "replace")
                 }
           });
            
@@ -259,7 +213,7 @@ function appendLogIn()
 function logout() {
 
     auth.signOut()
-    firebase.auth().onAuthStateChanged(function(user) {
+    auth.onAuthStateChanged(function(user) {
         if (user==null)
             {
                 window.open("../index.html", "replace")

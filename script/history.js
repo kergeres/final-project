@@ -17,7 +17,7 @@ var firebaseConfig = {
   // szerintem nemkell
  
     
-  const userRef = db.collection("user");
+  const userRef = db.collection("results");
   
   // watch the database ref for changes
   let resultArray = []
@@ -30,43 +30,134 @@ resultArray = []
       resultArray.push(ex);
     });
     appendExcercises(resultArray);
+   
   });
 
-    
+
   
-
-
+  
+let them  = []
+let lengthOfTasks = 0
 // display the excercise list
 function appendExcercises(databaseIn) 
 {
   
     let htmlTemplate = "";
     for (let exc of databaseIn) {
-      let idBySec = exc.duration
-      
-      if (exc.uid == firebase.auth().currentUser.uid)
+     
+      if (exc.uid == auth.currentUser.uid)
       {
+        lengthOfTasks = Object.size(exc['excercise'])
+        console.log(lengthOfTasks);
         htmlTemplate += `
-        <p onclick="resultCheck(${idBySec})" tabindex="1" class="exc-title">${exc.uid} - <b> ${exc.submitted}</b></p>`;
-        
-      }
-      // else if (1==1)
-      // {
-      //   alert()
-      // }
-       
+        <p onclick="resultCheck('${exc.id}'); andLength ('${exc.id}')" tabindex="1" class="exc-title">${exc.id} - <b> ${exc.title}</b></p>`;
+    
+        console.log();
     }     
     showLoader(false)
         document.querySelector(".exc-container").innerHTML = htmlTemplate;
         
 }
+}
+let llength =0
+function andLength (inId)
+{
+  console.log("lefutott legalabb");
+  for (const iit of resultArray) {
+    if (iit.id == inId)
+    {
+      llength = Object.size(iit['excercise'])
+      console.log(llength);
+      
+    }
+    
+  }
+ 
+}
 
 
+// itt valami nemjo majus 4
+let sliceTomb = []
+let szam = 1;
 
-function resultCheck(idIn)
+async function resultCheck(chosenId)
 { 
-  console.log(idIn)
-  // console.log(resultArray);
+ let markup = ""
+  function rightArray(be)
+  {
+    return be.id=== `${chosenId}`
+  } 
+  await console.log(llength);
+sliceTomb = resultArray.find(rightArray)
+
+
+   for (let k =0; k<llength; k++)
+      {
+        if (sliceTomb['excercise'][k]['key'] != 'undefined')
+        {
+          let activeClass = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? 'incorrect' : ''
+          
+          console.log(sliceTomb['excercise'][k]['key']);
+          markup += `
+          <tr><td><strong>${sliceTomb['excercise'][k]['key']}</strong></td><td class="${activeClass}">${sliceTomb['excercise'][k]['userAns']}</td></tr>
+          
+          `
+        }
+        
+       
+      }
+
+      
+      
+    
+      
+     
+     
+    
+
+
+  //  for (const iti of sliceTomb) {
+     
+  //    console.log(iti.title);
+  //     markup += `
+  //     <tr><td><strong>${iti.excercise[szam]['key']}</strong></td><td class="">${iti.excercise[szam]['userAns']}</td></tr>
+      
+  //     `
+      
+  //  }
+   document.querySelector(".exc-container").innerHTML = `<table>${markup}</table> `;
+   lengthOfTasks =0
+    
+  };
   
 
-}
+  Object.size = function(obj) {
+    var size = 0,
+      key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+      // console.log(Object.values( obj.hasOwnProperty(key)));
+    }
+    return size;
+  };
+
+
+
+
+
+
+
+function logout() {
+
+  auth.signOut()
+  auth.onAuthStateChanged(function(user) {
+      if (user==null)
+          {
+              window.open("../index.html", "replace")
+          }
+    });
+
+
+
+  
+    }

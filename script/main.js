@@ -10,6 +10,9 @@ function showLoader(show) {
   }
 }
 
+
+
+
 let cbOpen = true;
 function hamburgerNav() {
  
@@ -125,24 +128,12 @@ function sayLoudly(e)
 if (e.target !==e.currentTarget)
 {
   let focusedItem = e.target.innerHTML;
-  responsiveVoice.speak(focusedItem)
+  responsiveVoice.setDefaultRate(1.3);
+  responsiveVoice.speak(focusedItem, "UK English female", {rate: 1.3, volume: 1.2})
 }
 e.stopPropagation();
 }
-
-
-
-
-//keyboard listener for specific keyboard press
-document.addEventListener("keyup", function(event) {
-  if (event.keyCode === 81) {
-    responsiveVoice.speak("Megnyomtad a Q gombot", "Hungarian female", {volume: 9})
-  } 
-  // else if (event.keyCode === 87) {
-  //   sayLoudly(document.activeElement)
-  // }
-});
-
+// 
 
 
 
