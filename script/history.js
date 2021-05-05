@@ -14,9 +14,7 @@ var firebaseConfig = {
   
   const auth = firebase.auth();
   const db = firebase.firestore();
-  // szerintem nemkell
  
-    
   const userRef = db.collection("results");
   
   // watch the database ref for changes
@@ -28,7 +26,7 @@ resultArray = []
       ex.id = doc.id;
       resultArray.push(ex);
     });
-    appendExcercises(resultArray);
+    appendHistory(resultArray);
    
   });
 
@@ -38,22 +36,22 @@ resultArray = []
 let them  = []
 let lengthOfTasks = 0
 // display the excercise list
-function appendExcercises(databaseIn) 
+function appendHistory(databaseIn) 
 {
   
-    let htmlTemplate = "";
+    let htmlTemplate = ``;
     for (let exc of databaseIn) {
      
       if (exc.uid == auth.currentUser.uid)
       {
+        htmlTemplate += ""
         lengthOfTasks = Object.size(exc['excercise'])
         
         htmlTemplate += `
       
        <tr onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
-        
     }     
-    showLoader(false)
+        showLoader(false)
         document.querySelector(".exc-container").innerHTML = `<table class="history-table">${htmlTemplate}</table>`
         
 }
@@ -74,9 +72,9 @@ function andLength (inId)
 }
 
 
-// itt valami nemjo majus 4
+
 let sliceTomb = []
-let szam = 1;
+
 
 async function resultCheck(chosenId)
 { 
@@ -86,8 +84,7 @@ async function resultCheck(chosenId)
     return be.id=== `${chosenId}`
   } 
   await console.log(llength);
-sliceTomb = resultArray.find(rightArray)
-
+  sliceTomb = resultArray.find(rightArray)
 
    for (let k =0; k<llength; k++)
       {
@@ -123,11 +120,6 @@ sliceTomb = resultArray.find(rightArray)
   };
 
 
-
-
-
-
-
 function logout() {
 
   auth.signOut()
@@ -138,7 +130,4 @@ function logout() {
           }
     });
 
-
-
-  
     }

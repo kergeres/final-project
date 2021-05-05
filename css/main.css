@@ -175,38 +175,69 @@ h2 {
      color: red;
 
  }
- .history-table, .exc-table, .res-table
+ .history-table, .exc-table 
  {
     margin-left: 50%;
     transform: translateX(-50%);
    position: relative;
-   min-width: 400px;
+   width: 380px;
+   border-collapse:separate;
+    border-spacing: 0 2px;  
+   color:rgb(102, 102, 102);
+   cursor: pointer;
+   /* border: 1px solid black; */
+  
+ }
+ .res-table
+ {
+    margin-left: 50%;
+    transform: translateX(-50%);
+   position: relative;
+   width: 900px;
+   border-collapse:separate;
+    border-spacing: 0 20px;  
    color:rgb(102, 102, 102);
    cursor: pointer;
   
- }.history-table td, .exc-table td, .res-table td
+  
+ }
+ .history-table td, .exc-table td
  {
-   
-   text-align: center;
+    
+    text-align: center;
+    /* border: 1px solid rgb(145, 0, 114); */
+  
+}
+ .res-table td
+ {
+    width: 300px;
+    text-align: center;
+    padding: 5px;
+  
 }
  
  .history-table td:nth-child(1){
-    
-     width: 150px;
      text-align: start;
+     
 
- } .exc-table td:nth-child(1){
+ }.history-table td:nth-child(3){
+    
+     width: 80px;
+     text-align: end;
+
+ } 
+ .exc-table td:nth-child(1){
     
      width: 150px;
-
  }
 
  .res-table td:nth-child(1)
  {
-     width: 20px;
+     width: 40px;
      font-weight: bold;
-
+     display: flex;
  }
+
  
 
  .history-table tr:hover, .exc-table tr:hover
@@ -216,9 +247,9 @@ h2 {
    
     
 }
-td
+tr
 {
-    height: 30px;
+    margin-top: 40px;
  
 }
 .result

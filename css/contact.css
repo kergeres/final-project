@@ -99,19 +99,13 @@ h2{
     margin-bottom: 15px;
     cursor: pointer;
 }
-.vd-call-icon:hover
-{
-opacity: 0.8;}
 
-.vd-call-icon:hover +.btn
-{
-    opacity: 0.8;}
    
 .name-tag
 {
     margin-left: 50%;
     transform: translateX(-50%);
-    width: 255px;
+    width: 320px;
     margin-bottom: 70px;
     color: teal;
     /* border: 1px solid black; */

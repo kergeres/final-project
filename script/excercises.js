@@ -19,23 +19,6 @@ db.settings({
   timestamsInSnapshots: true
 });
 
-// // Fetches the excercises content (homeworks) from database
-// let databaseOut = [];
-// async function loadData() {
-//   let response = await fetch("../data/json.json");
-//   let jsonData = await response.json();
-//   databaseOut = jsonData;
-//   // appendExcercises(databaseOut);
-//   // jsonto (databaseOut) 
-
-// }
-
-// // call the fetch function.
-// async function init() {
-//   await loadData();
-// }
-// init();
-
 
 const userRef = db.collection("exercises");
 
@@ -53,8 +36,6 @@ userRef.orderBy("id").onSnapshot(function(snapshotData) {
 });
 
 
-
-let nr = ""
 // display the excercise list
 function appendExcercises(databaseIn) {
   let htmlTemplate = "";
@@ -234,10 +215,7 @@ let correctAnswerCounter = 0;
   
   document.querySelector(".exc-container").innerHTML = `
   <div class="exc-containerr">
-    <div class="pad-container"> 
-      <a href="excercises.html">
-      <span class="iksz">&#10005;</span>
-      </a>
+    
       <table class="res-table taskx-anima">
         <tr>
           <td></td>
@@ -247,11 +225,11 @@ let correctAnswerCounter = 0;
         <tr>
         <td></td>
           <td></td>
-          <td>${inPercent}</td>
+          <td><strong>${inPercent}</strong></td>
        </tr>
         </table> 
         <button id="gbck" onclick="window.location.href='excercises.html'"class="btn pag-btn">Go back</button>
-      </div>
+      
     </div>`
 
 

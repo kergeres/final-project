@@ -11,8 +11,6 @@ function showLoader(show) {
 }
 
 
-
-
 let cbOpen = true;
 function hamburgerNav() {
  
@@ -46,22 +44,8 @@ function hamburgerNav() {
   }
 
 
-// load excercises
+
 const _programs = [];
-
-
-// ez igy ki volt kommentelve, most nem tudom epp mire van
-// async function loadData() {
-//   let response = await fetch("/data/json.json");
-//   let jsonData = await response.json();
-//   _programs.push(jsonData);
-// console.log(_programs);
-// console.log(jsonData);
-//   appendNav(jsonData)
-//   appendProfile(jsonData)
-// }
-
-// console.log(_programs);
 
 
 
@@ -81,20 +65,6 @@ function searchPrograms(value) {
   // appendNav(filteredPrograms);
 }
 
-
-
-
-function appendNav(items)
-  {
-    let temlplete = ""
-
-    for (let item of items) {
-        temlplete += `<a  href="../sub/${item.title}.html"><p tabindex="2">${item.title}</p></a> `
-        
-    }
-    // ezt kommenteld ki
-    // document.querySelector(".small-content-container").innerHTML = temlplete;
-}
 
 
 
@@ -133,60 +103,4 @@ if (e.target !==e.currentTarget)
 }
 e.stopPropagation();
 }
-
-
-
-// 
-
-
-
-
-
-
-
-// ez nemtudom hogy kell e? ha nem akkor torold ki te majom.. amugy valami navval kapcsoalt
-// function appendProfile(tomb)
-// {
-//     let temlplete = ""
-
-//     for (let item of tomb) {
-//         temlplete += ` `
-        
-//     }
-//     document.querySelector(".nnav").innerHTML += temlplete;
-// }
-// let Parent = document.querySelector(".badi");
-// Parent.addEventListener("focusin", sayLoudly, false);
-
-
-// function eventLst()
-// {
-
-//     var x = document.querySelectorAll(".test");
-//     var i;
-//     for (i = 0; i < x.length; i++) 
-//     {
-//       x[i].addEventListener("focus", textToSpeach(x[i]))
-     
-//     }
-//   }
-// eventLst()
-// function textToSpeach(i)
-// {
-//   alert(i)
-//   var x = document.querySelectorAll(".test");
-//   var i;
-//   for (i = 0; i < x.length; i++) {
-//     x[i].addEventListener("focus", function()
-//     {
-//       let input = document.querySelector("#zene").innerHTML;
-//       responsiveVoice.speak(input)
-//     })
-//   }
-// }
-
-
-
-
-
 
