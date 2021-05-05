@@ -21,7 +21,8 @@ function fireBaseSignup() {
     
     let passInput = document.querySelector("#passwords").value
     let emailInput = document.querySelector("#emails").value
-    // auth.createUserWithEmailAndPassword(emailInput, passInput) .then((userCredential) => {
+    auth.createUserWithEmailAndPassword(emailInput, passInput) 
+    // .then((userCredential) => {
     //     // Signed in 
     //     var user = userCredential.user;
         
@@ -224,3 +225,6 @@ function logout() {
   
     
       }
+
+ 
+

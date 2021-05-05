@@ -26,7 +26,6 @@ resultArray = []
     snapshotData.forEach(doc => {
       let ex = doc.data();
       ex.id = doc.id;
-      // console.log(ex.id);
       resultArray.push(ex);
     });
     appendExcercises(resultArray);
@@ -48,7 +47,7 @@ function appendExcercises(databaseIn)
       if (exc.uid == auth.currentUser.uid)
       {
         lengthOfTasks = Object.size(exc['excercise'])
-        console.log(lengthOfTasks);
+        
         htmlTemplate += `
       
        <tr onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
@@ -62,13 +61,12 @@ function appendExcercises(databaseIn)
 let llength =0
 function andLength (inId)
 {
-  console.log("lefutott legalabb");
+ 
   for (const iit of resultArray) {
     if (iit.id == inId)
     {
       llength = Object.size(iit['excercise'])
-      console.log(llength);
-      
+     
     }
     
   }
@@ -98,7 +96,6 @@ sliceTomb = resultArray.find(rightArray)
           let activeClass = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? 'incorrect' : ''
           let incorrectTabindex = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? '1' : '0'
 
-          console.log(sliceTomb['excercise'][k]['key']);
           markup += `
           <tr><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td onfocus="sayLoudly('your answer:${sliceTomb['excercise'][k]['userAns']}. correct answer: ${sliceTomb['excercise'][k]['key']}')" tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           
@@ -120,7 +117,7 @@ sliceTomb = resultArray.find(rightArray)
       key;
     for (key in obj) {
       if (obj.hasOwnProperty(key)) size++;
-      // console.log(Object.values( obj.hasOwnProperty(key)));
+  
     }
     return size;
   };

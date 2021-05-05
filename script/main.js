@@ -129,10 +129,11 @@ if (e.target !==e.currentTarget)
 {
   let focusedItem = e.target.innerHTML;
   responsiveVoice.setDefaultRate(1.3);
-  responsiveVoice.speak(focusedIte, "UK English Female")
+  responsiveVoice.speak(focusedItem, "UK English Female")
 }
 e.stopPropagation();
 }
+
 
 
 // 
@@ -180,9 +181,10 @@ e.stopPropagation();
 //     {
 //       let input = document.querySelector("#zene").innerHTML;
 //       responsiveVoice.speak(input)
-//     }
-  
+//     })
+//   }
 // }
+
 
 
 
