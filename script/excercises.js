@@ -20,20 +20,53 @@ db.settings({
 });
 
 
-const userRef = db.collection("exercises");
+const historyRef = db.collection("history-exercises");
+const mathRef = db.collection("exercises");
 
 // watch the database ref for changes
 let resultArray = []
-userRef.orderBy("id").onSnapshot(function(snapshotData) {
-  resultArray = []
+let resultArrayy = []
+function callHistEx ()
+{
+  showLoader(true)
+  historyRef.orderBy("id").onSnapshot(function(snapshotData) {
+  resultArrayy = []
   snapshotData.forEach(doc => {
     let ex = doc.data();
-   
+
     resultArray.push(ex);
   });
   appendExcercises(resultArray);
 
 });
+}
+function callMathEx ()
+{
+  showLoader(true)
+  mathRef.orderBy("id").onSnapshot(function(snapshotData) {
+    resultArray = []
+    snapshotData.forEach(doc => {
+      let ex = doc.data();
+  
+      resultArray.push(ex);
+    });
+    appendExcercises(resultArray);
+  
+  });
+}
+
+function appendCategories ()
+{
+  let htmlTemplate = `<div class="card-container">
+  <div tabindex="1" src="../img/SVG/math_1.svg" class="cat-card"  onclick="callMathEx()"></div>
+  <div tabindex="1"  src="../img/SVG/history-card.svg" class="cat-card"  onclick="callHistEx()">  
+  </div>
+  `
+  document.querySelector(".exc-container").innerHTML = htmlTemplate;
+  showLoader(false)
+}
+appendCategories ()
+
 
 
 // display the excercise list
@@ -53,7 +86,7 @@ function appendExcercises(databaseIn) {
       <td>
       </td>
     </tr>${htmlTemplate}
-  </table>` ;
+  </table>`;
   showLoader(false)
 }
 
@@ -63,7 +96,6 @@ let chosenArray = ["jeg er empty"];
 let startdate = 0;
 
 function openExcercise(excId) {
-
   for (const fut of resultArray) {
     if (fut.id == excId) {
       chosenArray.fill(resultArray.slice(fut.id - 1, fut.id));
@@ -71,8 +103,6 @@ function openExcercise(excId) {
       document.querySelector("#taskx").focus()
       startdate = new Date()
       vmi()
-
-
     }
   }
 }
@@ -83,13 +113,10 @@ function vmi() {
 }
 
 
-
-
 let slidenumber = 1;
 let answersFromUser = [];
 // take the next slide on the Next click, calls the function which displays them
 function pagination() {
-
 
   document.querySelector("#next").addEventListener('click', function() {
     let answer = document.querySelector("#answer").value != "" ? document.querySelector("#answer").value : "-"
@@ -105,20 +132,15 @@ function pagination() {
       document.querySelector(".exc-containerr").classList.remove("animo")
       document.querySelector(".taskx").classList.remove("taskx-anima")
       document.querySelector(".ans").classList.remove("taskx-anima")
-
     }
-
-
   })
 }
 // ¨displays all of the slides
 
 function appendSlides(slideNr) {
   let lengthOfTasks = 0
-  let counter = chosenArray.length
   let htmlTemplate = "";
   for (let ubolt of chosenArray) {
-    let counter = ubolt[0].tasks
     let taskX = ubolt[0].tasks[`task${slideNr}`]
 
     htmlTemplate = `<div class="exc-containerr animo"><div class="pad-container">
@@ -134,11 +156,7 @@ function appendSlides(slideNr) {
         <input autocomplete="off" id="answer" class="ans-input ans taskx-anima" type="input"/>
         <button type="button"  class="btn pag-btn" id="next">Next</button></div></div>
         `;
-    // Get the size of an the chosen excercise size (length)
     lengthOfTasks = Object.size(ubolt[0].tasks)
-
-
-
   }
 
   if (slideNr <= lengthOfTasks) {
@@ -146,7 +164,6 @@ function appendSlides(slideNr) {
     document.querySelector(".exc-container").innerHTML = htmlTemplate;
     pagination()
   } else {
-    document.querySelector(".exc-container").innerHTML = "vege";
     displayRecentAnswers(answersFromUser)
   }
 }
@@ -172,6 +189,7 @@ function indexCounter(taskId) {
 
   }
 }
+
 function indexCounterTask(taskId) {
   for (const iti of chosenArray) {
 
@@ -187,13 +205,13 @@ let counter = 1;
 function displayRecentAnswers(ansIn) {
   let title = "g"
   let htmlTemplate = ""
-let correctAnswerCounter = 0;
+  let correctAnswerCounter = 0;
   for (const run of ansIn) {
     let tasksKey = indexCounter(counter)
     let task = indexCounterTask(counter)
-   
+
     let activeClass = run[counter] != tasksKey ? 'incorrect' : ''
-    correctAnswerCounter = run[counter] == tasksKey ? correctAnswerCounter+1 : correctAnswerCounter
+    correctAnswerCounter = run[counter] == tasksKey ? correctAnswerCounter + 1 : correctAnswerCounter
     htmlTemplate += `<tr><td>${Object.keys(run)}</td><td>${task}</td><td class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>${tasksKey}</td></tr>`
 
     for (const iti of chosenArray) {
@@ -210,9 +228,9 @@ let correctAnswerCounter = 0;
     counter++;
 
   }
- let inPercent = `${ Math.round(correctAnswerCounter/(counter-1)*100)}%`
- let inNumbers = `${correctAnswerCounter}/${(counter-1)}`
-  
+  let inPercent = `${ Math.round(correctAnswerCounter/(counter-1)*100)}%`
+  let inNumbers = `${correctAnswerCounter}/${(counter-1)}`
+
   document.querySelector(".exc-container").innerHTML = `
   <div class="exc-containerr">
     
@@ -251,14 +269,14 @@ let currentDate = `${yyyy}/${mm}/${dd} - ${hh}:${mi}`
 
 
 
-function firestoreUpload(idUanswerKex, title, result, inNumbers) {
+function firestoreUpload(idUanswerKey, title, result, inNumbers) {
 
   let user = firebase.auth().currentUser;
   //create a new collection insede the user collection
 
   db.collection("results").doc().set({
       submitted: currentDate,
-      excercise: idUanswerKex,
+      excercise: idUanswerKey,
       email: user.email,
       duration: Math.floor((startdate - today) / 1000),
       title: title,

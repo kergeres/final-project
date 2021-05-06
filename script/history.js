@@ -15,11 +15,11 @@ var firebaseConfig = {
   const auth = firebase.auth();
   const db = firebase.firestore();
  
-  const userRef = db.collection("results");
+  const resultRef = db.collection("results");
   
   // watch the database ref for changes
   let resultArray = []
-  userRef.orderBy("submitted").onSnapshot(function (snapshotData) {
+  resultRef.orderBy("submitted").onSnapshot(function (snapshotData) {
 resultArray = []
     snapshotData.forEach(doc => {
       let ex = doc.data();
@@ -94,7 +94,7 @@ async function resultCheck(chosenId)
           let incorrectTabindex = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? '1' : '0'
 
           markup += `
-          <tr><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td onfocus="sayLoudly('your answer:${sliceTomb['excercise'][k]['userAns']}. correct answer: ${sliceTomb['excercise'][k]['key']}')" tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
+          <tr><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           
           `
         }

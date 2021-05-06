@@ -181,20 +181,64 @@ cursor: text;
     color: var(--dark-blue);
     margin-left: 5px;
 }
+.card-container
+{
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 450px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cat-card:first-child
+{
+    width: 170px;
+    height: 180px;
+    cursor: pointer;
+    background-image: url(../img/SVG/math_2.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}.cat-card:nth-child(2)
+{
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    background-image: url(../img/SVG/history.svg);
+   
+
+}.cat-card:nth-child(2):hover
+{
+
+    background-image: url(../img/SVG/history_hover.svg);
+   
+
+}
+.cat-card:first-child:hover
+{
+ 
+    background-image: url(../img/SVG/math_hover.svg);
 
 
-
-
+}
+.cat-card i
+{
+    font-size: 50px;
+    display: block;
+}
 table tr th
 {
 min-width: 50px;
 padding: 10px;
+
 }
 
 table 
 {
     margin: 0 auto;
-   
+    cursor: text;
     position: absolute;
 
     /* border-right: 1px solid green; */
