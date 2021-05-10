@@ -85,7 +85,7 @@ function logout() {
 	auth.signOut()
 	auth.onAuthStateChanged(function(user) {
 		if(user == null) {
-			window.open("../index.html", "_self")
+			window.open("../index.php", "_self")
 		}
 	});
 }

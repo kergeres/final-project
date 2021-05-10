@@ -129,7 +129,7 @@ function appendSlides(slideNr) {
 	for(let ubolt of chosenArray) {
 		let taskX = ubolt[0].tasks[`task${slideNr}`]
 		htmlTemplate = `<div class="exc-containerr animo"><div class="pad-container">
-       <a tabindex="1" onfocus="sayLoudly('exit')" href="excercises.html"><span class="iksz"><p>Exit</p>&#10005;</span></a>
+       <a tabindex="1" onfocus="sayLoudly('exit')" href="excercises.php"><span class="iksz"><p>Exit</p>&#10005;</span></a>
        <table class="proc-table">
        <tr><td class="proc taskx-anima">${slideNr}</td><td class="proc ">/${Object.size(ubolt[0].tasks)}</td></tr>
         
@@ -215,7 +215,7 @@ function displayRecentAnswers(ansIn) {
           <td><strong>${inPercent}</strong></td>
        </tr>
         </table> 
-        <button id="gbck" onclick="window.location.href='excercises.html'"class="btn pag-btn">Go back</button>
+        <button id="gbck" onclick="window.location.href='excercises.php'"class="btn pag-btn">Go back</button>
       
     </div>`
 	firestoreUpload(idUanswerKex, title, inPercent, inNumbers)
@@ -254,7 +254,7 @@ function logout() {
 	auth.signOut()
 	auth.onAuthStateChanged(function(user) {
 		if(user == null) {
-			window.open("../index.html", "_self")
+			window.open("../index.php", "_self")
 		}
 	});
 }
