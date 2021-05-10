@@ -50,8 +50,9 @@
    justify-content: center;
    display: block;
    padding: 20px;
-   background-color: #B2CBB2;
-
+   /* background-color: #B2CBB2; */
+   background: rgb(110,161,164);
+   background: linear-gradient(160deg, rgba(110,161,164,1) 0%, rgba(144,181,183,1) 100%);
    
 }
 
@@ -80,7 +81,9 @@
   
    
 }
-
+.card-container p{
+    opacity: 0;
+}
 
 .pad-container
 {
@@ -92,11 +95,12 @@ height: auto;
 display: block;
 position: relative;
 padding: 40px 60px;
-background-color: white;
+background-color: #f1eee8;
 border-radius: 30px;
--webkit-box-shadow: 5px 6px 15px 5px rgba(146,146,146,0.6); 
-box-shadow: 5px 6px 15px 5px rgba(146,146,146,0.6);
-
+/* -webkit-box-shadow: 5px 6px 15px 5px rgba(146,146,146,0.6); 
+box-shadow: 5px 6px 15px 5px rgba(146,146,146,0.6); */
+-webkit-box-shadow: 0px 23px 11px -18px rgba(85,85,85,0.93), 0px 2px 36px -1px rgba(85,85,85,0.93); 
+box-shadow: 0px 23px 11px -18px rgba(85,85,85,0.93), 0px 2px 36px -1px rgba(85,85,85,0.93);
 }
 #taskx
 {
@@ -158,10 +162,11 @@ cursor: text;
     margin-top: 50px;
     margin-left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(171, 217, 224);
+    background-color: white;
     border: none;
     padding: 5px;
     line-height: 90px;
+    caret-color: #5f5f5f;
 }
 
 .exc-title

@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="https://use.typekit.net/qrz7jlg.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
    </head>
-   <body">
+   <body>
       <div class="ham-cont" onclick="hamburgerNav()">
          <label for="mobileicon" class="ham-menu-lineb"></label>
          <label for="mobileicon" class="ham-menu-line"></label>
@@ -20,14 +20,14 @@
       </div>
       <main >
          <div class="content-container badi">
-            <h1 onfocus="sayLoudly('Log in')" tabindex="1" class="title">Log in</h1>
+            <h1 tabindex="1" class="title">Log in</h1>
             <div class="auth-content-container">
                <label for="email">Email</label>
-               <input autocomplete="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="email">
+               <input autocomplete="email" type="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="email">
                <label  for="password">Password</label>
                <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="password">
                <button tabindex="1" onclick="logIn()"  id="login" type="submit">Log in</button>
-               <p onclick="appendSignUp()" onfocus="sayLoudly(this.innerHTML)" tabindex="1">You Dont't have account? Press enter to sign up.</p>
+               <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
             </div>
          </div>
       </main>

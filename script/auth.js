@@ -21,7 +21,7 @@ function fireBaseSignup() {
     
     let passInput = document.querySelector("#passwords").value
     let emailInput = document.querySelector("#emails").value
-    auth.createUserWithEmailAndPassword(emailInput, passInput) 
+    firebase.auth().createUserWithEmailAndPassword(emailInput, passInput) 
     // .then((userCredential) => {
     //     // Signed in 
     //     var user = userCredential.user;
@@ -87,13 +87,10 @@ function logIn ()
         auth.onAuthStateChanged(function(user) {
             if (user != null)
                 {
-                    window.open("sub/excercises.html", "replace")
+                    window.open("sub/excercises.html", "_self")
                 }
           });
-           
-
-        
-        
+      
     } 
     else if (passInput == "" && emailInput =="")
     {
@@ -161,6 +158,7 @@ function sayLoudly(message)
 }
 
 
+
 function appendSignUp() 
 
 {
@@ -187,24 +185,37 @@ function appendSignUp()
 
 }
 
+let loginListener = document.getElementById("password");
+loginListener.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        logIn()
+    }
+});
+
+let regListener = document.getElementById("signUpText");
+regListener.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        
+        appendSignUp()
+    }
+});
+
 function appendLogIn() 
 
 {
 
     let htmlTemplate = "";
      htmlTemplate = `
-     <h1 onfocus="sayLoudly('Log in')" tabindex="1" class="title">Log in</h1>
+     <h1 tabindex="1" class="title">Log in</h1>
      <div class="auth-content-container">
-
-     <label for="email">Email</label>
-     <input autocomplete="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="email">
- 
-     <label  for="password">Password</label>
-     <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="password">
- 
-     <button tabindex="1" onclick="logIn()"  id="login" type="submit">Log in</button>
-     <p onclick="appendSignUp()" onfocus="sayLoudly(this.innerHTML)" tabindex="1">You Dont't have account? Press enter to sign up.</p>
-    `;
+        <label for="email">Email</label>
+        <input autocomplete="email" type="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="email">
+        <label  for="password">Password</label>
+        <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="password">
+        <button tabindex="1" onclick="logIn()"  id="login" type="submit">Log in</button>
+        <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
+     </div> `;
 
         document.querySelector(".content-container").innerHTML = htmlTemplate;
 
@@ -214,10 +225,12 @@ function appendLogIn()
 function logout() {
 
     auth.signOut()
+    
     auth.onAuthStateChanged(function(user) {
         if (user==null)
             {
-                window.open("../index.html", "replace")
+                alert("you logged in")
+                .then(setTimeout(window.open("../index.html", "replace"),5000) )
             }
       });
 

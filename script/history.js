@@ -90,11 +90,11 @@ async function resultCheck(chosenId)
       {
         if (sliceTomb['excercise'][k]['key'] != 'undefined')
         {
-          let activeClass = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? 'incorrect' : ''
-          let incorrectTabindex = sliceTomb['excercise'][k]['key'] != sliceTomb['excercise'][k]['userAns'] ? '1' : '0'
+          let activeClass = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? 'incorrect' : ''
+          let incorrectTabindex = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? '0' : ''
 
           markup += `
-          <tr><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td tabindex="${incorrectTabindex}" class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
+          <tr tabindex="${incorrectTabindex}"><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td  class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           
           `
         }
@@ -126,8 +126,16 @@ function logout() {
   auth.onAuthStateChanged(function(user) {
       if (user==null)
           {
-              window.open("../index.html", "replace")
+              window.open("../index.html", "_self")
           }
     });
 
     }
+
+    let logoutBtn = document.getElementById("logout");
+    logoutBtn.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+       
+      logoutBtn()
+    }
+});

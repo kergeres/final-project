@@ -408,7 +408,7 @@ tr
 
 .ans-input
 {
-    border-radius: 3px;
+    border-radius: 10px;
     height: 140px;
     width: 100%;
     margin-top: 60px;
@@ -416,6 +416,7 @@ tr
     text-indent: 10px;
     font-size: 14px;
     text-align: center;
+    background-color: #f1eee8
 }
 .input
 

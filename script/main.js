@@ -97,10 +97,16 @@ function sayLoudly(e)
 {
 if (e.target !==e.currentTarget)
 {
-  let focusedItem = e.target.innerHTML;
+ 
+  let focusedItem = e.target.innerText;
   responsiveVoice.setDefaultRate(1.3);
   responsiveVoice.speak(focusedItem, "UK English Female")
+
 }
 e.stopPropagation();
 }
+
+
+
+
 

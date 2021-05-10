@@ -20,8 +20,10 @@ db.settings({
 });
 
 
+
+
 const historyRef = db.collection("history-exercises");
-const mathRef = db.collection("exercises");
+const mathRef = db.collection("mathematics-exercises");
 
 // watch the database ref for changes
 let resultArray = []
@@ -58,16 +60,27 @@ function callMathEx ()
 function appendCategories ()
 {
   let htmlTemplate = `<div class="card-container">
-  <div tabindex="1" src="../img/SVG/math_1.svg" class="cat-card"  onclick="callMathEx()"></div>
-  <div tabindex="1"  src="../img/SVG/history-card.svg" class="cat-card"  onclick="callHistEx()">  
-  </div>
+  <div tabindex="1"  src="../img/SVG/math_1.svg" class="cat-card"  onclick="callMathEx()"><p>Mathetmatics</p></div>
+  <div tabindex="1"  src="../img/SVG/history-card.svg" class="cat-card hs"  onclick="callHistEx()"><p>History</p></div>
   `
   document.querySelector(".exc-container").innerHTML = htmlTemplate;
   showLoader(false)
 }
 appendCategories ()
 
-
+let mcardListener = document.querySelector(".cat-card");
+mcardListener.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      callHistEx()
+    }
+});
+let cardListener = document.querySelector(".hs");
+cardListener.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      callMathEx()
+       
+    }
+});
 
 // display the excercise list
 function appendExcercises(databaseIn) {
@@ -76,7 +89,7 @@ function appendExcercises(databaseIn) {
 
     htmlTemplate += `
     <tr>
-    <td  onclick="openExcercise('${exc.id}')" tabindex="1">${exc.title}</td>
+    <td onclick="openExcercise('${exc.id}')" tabindex="1">${exc.title}</td>
     </tr>`;
 
   }
@@ -121,7 +134,7 @@ function pagination() {
   document.querySelector("#next").addEventListener('click', function() {
     let answer = document.querySelector("#answer").value != "" ? document.querySelector("#answer").value : "-"
     let idPlusAns = {};
-    idPlusAns[slidenumber] = answer;
+    idPlusAns[slidenumber] = answer.toLowerCase();
     answersFromUser.push(idPlusAns)
     slidenumber++;
     appendSlides(slidenumber)
@@ -209,10 +222,10 @@ function displayRecentAnswers(ansIn) {
   for (const run of ansIn) {
     let tasksKey = indexCounter(counter)
     let task = indexCounterTask(counter)
-
-    let activeClass = run[counter] != tasksKey ? 'incorrect' : ''
-    correctAnswerCounter = run[counter] == tasksKey ? correctAnswerCounter + 1 : correctAnswerCounter
-    htmlTemplate += `<tr><td>${Object.keys(run)}</td><td>${task}</td><td class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>${tasksKey}</td></tr>`
+    let wrongTabIndex = run[counter].toLowerCase() != tasksKey.toLowerCase() ? '1' : '' 
+    let activeClass = run[counter].toLowerCase() != tasksKey.toLowerCase() ? 'incorrect' : ''
+    correctAnswerCounter = run[counter].toLowerCase() == tasksKey.toLowerCase() ? correctAnswerCounter + 1 : correctAnswerCounter
+    htmlTemplate += `<tr tabindex="${wrongTabIndex}"><td>${Object.keys(run)}</td><td>${task}</td><td  class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>${tasksKey}</td></tr>`
 
     for (const iti of chosenArray) {
 
@@ -284,7 +297,7 @@ function firestoreUpload(idUanswerKey, title, result, inNumbers) {
       result: result,
       inNumbers: inNumbers
 
-      //baskets number
+     
     }, {
       merge: true
     }).then(() => {
@@ -297,18 +310,13 @@ function firestoreUpload(idUanswerKey, title, result, inNumbers) {
 }
 
 
-function jsonto(exercises) {
-  db.collection("exercises").doc().set({
-    exercises
-  })
-}
 
 function logout() {
 
   auth.signOut()
   auth.onAuthStateChanged(function(user) {
     if (user == null) {
-      window.open("../index.html", "replace")
+      window.open("../index.html", "_self")
     }
   });
 
