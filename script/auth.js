@@ -159,7 +159,7 @@ function logout() {
 	auth.signOut()
 	auth.onAuthStateChanged(function(user) {
 		if(user == null) {
-			alert("you logged in").then(setTimeout(window.open("../index.php", "replace"), 5000))
+			alert("you logged in").then(setTimeout(window.open("../index.html", "replace"), 5000))
 		}
 	});
 }

@@ -14,15 +14,7 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
    </head>
    <body class="badi">
-      <header>
-         <img alt="Talking Bots Logo" src="../img/icons/SVG/dark_logo_with_text.svg" class="logo">
-         <div >
-            <a tabindex="0" class="hnav-point" href="history.php"><i class="fas fa-history"></i>History</a>
-            <a tabindex="0" class="hnav-point" href="excercises.php"><i class="fas fa-book"></i>Exercises</a>
-            <a tabindex="0" class="hnav-point" href="contact.php"><i class="fas fa-phone-alt"></i>Contact</a>
-            <a tabindex="0" onclick="logout()" id="logout" class="hnav-point"><i class="fas fa-sign-out-alt"></i>log out</a>
-         </div>
-      </header>
+   <?php require_once "header.php"; ?>
       <main>
          <div class="content-container badi">
             <h1 class="title">History</h1>
