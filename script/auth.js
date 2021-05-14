@@ -16,60 +16,37 @@ const db = firebase.firestore();
 db.settings({
 	timestamsInSnapshots: true
 });
-
+// sign up with email and password to fireabse
 function fireBaseSignup() {
 	let passInput = document.querySelector("#passwords").value
 	let emailInput = document.querySelector("#emails").value
 	firebase.auth().createUserWithEmailAndPassword(emailInput, passInput)
-		// .then((userCredential) => {
-		//     // Signed in 
-		//     var user = userCredential.user;
-		//   })
-}
-// document.querySelector("#email").addEventListener("blur", checkMail)
-function checkMail() {
-	let emailInput = document.querySelector("#email").value
-	if(emailInput == "") {
-		sayLoudly("Email required")
-			// is required. Please press shift + tab, type in you email and press enter, then tab."
-	} else {
-		sayLoudly(`email Ok.`)
-			// typed in the following email: ${emailInput}. If you want to change
-			// the email, press shift + tab, and type in the new email. To continue press enter and type in your password
-	}
-}
-// document.querySelector("#password").addEventListener("blur", checkPass)
-function checkPass() {
-	let passInput = document.querySelector("#password").value
-	if(passInput == "") {
-		sayLoudly("password required")
-			// s required. Please press shift + tab, type in you password and press enter, then tab.
-	}
-	// else 
-	// {
-	//     sayLoudly(`You typed in the following email: ${emailInput}. If you want to change
-	//     the email, press shift + tab, and type in the new email. To continue press enter and type in your password`)
-	// }
+		
 }
 
+// login with the previously created data
 function logIn() {
 	let passInput = document.querySelector("#password").value
 	let emailInput = document.querySelector("#email").value
 	if(passInput !== "" && emailInput !== "") {
 		let passInput = document.querySelector("#password").value
 		let emailInput = document.querySelector("#email").value
+		// catch the possibly errors and read them aloud
 		auth.signInWithEmailAndPassword(emailInput, passInput).catch((error) => {
 			var errorCode = error.code;
 			var errorMessage = error.message;
 			sayLoudly(errorCode);
 			sayLoudly(errorMessage);
 		});
+		// if the user is logged out, open the welcoming page
 		auth.onAuthStateChanged(function(user) {
 			if(user != null) {
 				window.open("php/excercises.php", "_self")
 			}
 		});
-	} else if(passInput == "" && emailInput == "") {
+	}
+	// checking if every input is filled correctly for auth.
+	 else if(passInput == "" && emailInput == "") {
 		sayLoudly("Email and password is required.")
 	} else if(emailInput == "") {
 		sayLoudly("email is required")
@@ -108,7 +85,7 @@ function signUp() {
 function sayLoudly(message) {
 	responsiveVoice.speak(message)
 }
-
+// append pages with SPA mode
 function appendSignUp() {
 	let htmlTemplate = "";
 	htmlTemplate = `<h1 onchange="sayLoudly('Sign up')" tabindex="1" class="title">Sign Up</h1>
@@ -126,19 +103,8 @@ function appendSignUp() {
         <button tabindex="1" onclick="signUp()"  id="login" type="submit">Sign up</button>`;
 	document.querySelector(".content-container").innerHTML = htmlTemplate;
 }
-let loginListener = document.getElementById("password");
-loginListener.addEventListener("keyup", function(event) {
-	if(event.keyCode === 13) {
-		event.preventDefault();
-		logIn()
-	}
-});
-let regListener = document.getElementById("signUpText");
-regListener.addEventListener("keyup", function(event) {
-	if(event.keyCode === 13) {
-		appendSignUp()
-	}
-});
+
+// append pages with SPA mode
 
 function appendLogIn() {
 	let htmlTemplate = "";
@@ -159,7 +125,28 @@ function logout() {
 	auth.signOut()
 	auth.onAuthStateChanged(function(user) {
 		if(user == null) {
-			alert("you logged in").then(setTimeout(window.open("../index.html", "replace"), 5000))
+			alert("you logged in").then(setTimeout(window.open("../index.php", "replace"), 5000))
 		}
 	});
 }
+
+// eventlisteners for enter press for register and login
+let loginListener = document.getElementById("password");
+loginListener.addEventListener("keyup", function(event) {
+	if(event.keyCode === 13) {
+		event.preventDefault();
+		logIn()
+	}
+});
+let regListener = document.getElementById("signUpText");
+regListener.addEventListener("keyup", function(event) {
+	if(event.keyCode === 13) {
+		appendSignUp()
+	}
+});
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-184145524-2');

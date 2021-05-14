@@ -1,4 +1,5 @@
 "use strict";
+// referencing to the Firebase project
 var firebaseConfig = {
 	apiKey: "AIzaSyBfl3DJEQWOOLGoNp7jnXfXQ8sqcZotTlQ",
 	authDomain: "vizsga-d5490.firebaseapp.com",
@@ -24,7 +25,7 @@ resultRef.orderBy("submitted").onSnapshot(function(snapshotData) {
 	});
 	appendHistory(resultArray);
 });
-let them = []
+
 let lengthOfTasks = 0
 	// display the excercise list
 function appendHistory(databaseIn) {
@@ -32,17 +33,23 @@ function appendHistory(databaseIn) {
 	for(let exc of databaseIn) {
 		if(exc.uid == auth.currentUser.uid) {
 			htmlTemplate += ""
+			// Get the chosen exercise's task length
 			lengthOfTasks = Object.size(exc['excercise'])
 			htmlTemplate += `
       
-       <tr onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
+       <tr id="DIVI" onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title liu" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
 		}
+		// stopping the loader
 		showLoader(false)
 		document.querySelector(".exc-container").innerHTML = `<table class="history-table">${htmlTemplate}</table>`
 	}
 }
-let llength = 0
 
+
+
+
+let llength = 0
+// counting the length of the exercises 
 function andLength(inId) {
 	for(const iit of resultArray) {
 		if(iit.id == inId) {
@@ -50,6 +57,7 @@ function andLength(inId) {
 		}
 	}
 }
+// display the chosen exercises results in a table, and mark the wrong ansers 
 let sliceTomb = []
 async function resultCheck(chosenId) {
 	let markup = ""
@@ -64,7 +72,7 @@ async function resultCheck(chosenId) {
 			let activeClass = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? 'incorrect' : ''
 			let incorrectTabindex = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? '0' : ''
 			markup += `
-          <tr tabindex="${incorrectTabindex}"><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td  class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
+         <tr tabindex="${incorrectTabindex}"><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td  class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           
           `
 		}
@@ -72,6 +80,7 @@ async function resultCheck(chosenId) {
 	document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td><td>Task</td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}<tr><td></td><td></td><td><strong class="result">${sliceTomb.result}</strong></td><td></td></tr></table>`;
 	lengthOfTasks = 0
 };
+// array's length counter
 Object.size = function(obj) {
 	var size = 0,
 		key;
@@ -81,17 +90,44 @@ Object.size = function(obj) {
 	return size;
 };
 
+
 function logout() {
 	auth.signOut()
 	auth.onAuthStateChanged(function(user) {
 		if(user == null) {
-			window.open("../index.html", "_self")
+			window.open("../index.php", "_self")
 		}
 	});
 }
+// enterkey event listener for logout function
 let logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("keyup", function(event) {
 	if(event.keyCode === 13) {
 		logoutBtn()
 	}
 });
+
+
+
+	
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-184145524-2');
+
+
+
+function entrKeyListenerAll()
+	{
+		let activeElement = document.activeElement;
+		activeElement.addEventListener("keyup", (event) => {
+						if(event.keyCode === 13) {
+							activeElement.click();
+						}
+					})
+		setTimeout(entrKeyListenerAll, 10);
+	}
+
+entrKeyListenerAll()
+

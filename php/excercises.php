@@ -14,7 +14,7 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
    </head>
    <body  class="badi">
-   <?php require_once "header.php"; ?>
+      <?php require_once "header.php"; ?>
       <main>
          <div class="content-container badi">
             <h1 class="title">Excercises</h1>
@@ -29,6 +29,8 @@
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
       <script src="../script/main.js"></script>
       <script src="../script/excercises.js"></script>

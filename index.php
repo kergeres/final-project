@@ -38,6 +38,8 @@
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
       <!-- https://firebase.google.com/docs/web/setup#available-libraries  -->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
       <script src="script/main.js"></script>
       <script src="script/auth.js"></script>

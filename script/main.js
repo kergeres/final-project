@@ -1,5 +1,5 @@
 "use strict";
-// hamburger menu animation
+// loading animation function
 function showLoader(show) {
 	let loader = document.querySelector('#loader');
 	if(show) {
@@ -12,18 +12,16 @@ function showLoader(show) {
 const _programs = [];
 
 function searchPrograms(value) {
-	console.log(value);
 	let filteredPrograms = []
 	for(const item of _programs) {
 		let title = item.title.toLowerCase();
-		console.log(item)
 		if(title.includes(value.toLowerCase())) {
 			filteredPrograms.push(item);
 		}
 	}
-	console.log(filteredPrograms);
-	// appendNav(filteredPrograms);
+
 }
+
 //keyboard listener for tab keyboard press
 function tabEventList() {
 	let i;
@@ -32,7 +30,9 @@ function tabEventList() {
 		x[i].addEventListener("focusin", sayLoudly, false)
 	}
 }
+
 tabEventList()
+
 	// this one tells in which poin is the focus on
 function whereIsTheFocus() {
 	alert(document.activeElement.innerHTML)
@@ -43,7 +43,26 @@ function sayLoudly(e) {
 	if(e.target !== e.currentTarget) {
 		let focusedItem = e.target.innerText;
 		responsiveVoice.setDefaultRate(1.3);
-		responsiveVoice.speak(focusedItem, "UK English Female")
+		responsiveVoice.speak(focusedItem, "UK English Female", {volume: 0.1})
 	}
 	e.stopPropagation();
 }
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-184145524-2');
+
+function entrKeyListenerAll()
+	{
+		let activeElement = document.activeElement;
+		activeElement.addEventListener("keyup", (event) => {
+						if(event.keyCode === 13) {
+							activeElement.click();
+						}
+					})
+		setTimeout(entrKeyListenerAll, 10);
+	}
+
+entrKeyListenerAll()
