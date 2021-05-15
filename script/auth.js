@@ -150,3 +150,17 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 gtag('config', 'UA-184145524-2');
+
+let starter = false;
+function welcomeMessage()
+{
+	document.body.addEventListener("click", ()=>{
+		if (starter == false)
+		{
+			sayLoudly("hello darling, this is the .100 welcome!")
+		}
+		starter=true
+	})
+
+}
+welcomeMessage()

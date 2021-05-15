@@ -13,7 +13,7 @@ p {
 }
 
 input {
-	margin: 5px auto 30px auto;
+	margin: 2px auto 30px auto;
 	display: block;
 	width: 250px;
 	border: 1px solid #1e8383;
@@ -27,25 +27,35 @@ input {
 	background-size: 20px;
 }
 
+
 .inp-img {
 	width: 10px;
 	position: relative
 }
-
+label
+{
+	margin-bottom: 20px;
+}
 .title {
 	text-align: center;
 	color: #5f5f5f;
 	font-family: roboto;
 	text-transform: uppercase;
 	margin: 20px;
+	letter-spacing: 1px;
+    font-size: 28px;
 }
+
 
 .auth-content-container {
 	display: block;
 	color: white;
 	width: 400px;
 	margin: 0 auto;
+	margin-top: 33vh;
+	transform: translateY(-50%);
 	height: 350px;
+	border-radius: 5px;
 	justify-content: center;
 	text-align: center;
 	padding: 20px;
@@ -60,6 +70,7 @@ button {
 	border-radius: 3px;
 	height: 32px;
 	color: white;
+	margin-top: 24px;
 }
 
 .txt-btn {
@@ -69,7 +80,7 @@ button {
 	border-radius: unset;
 	height: unset;
 	color: unset;
-	margin-top: 40px;
+
 	color: white !important;
 	font-size: 15px;
 }

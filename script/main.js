@@ -43,7 +43,7 @@ function sayLoudly(e) {
 	if(e.target !== e.currentTarget) {
 		let focusedItem = e.target.innerText;
 		responsiveVoice.setDefaultRate(1.3);
-		responsiveVoice.speak(focusedItem, "UK English Female", {volume: 0.1})
+		responsiveVoice.speak(focusedItem, "UK English Female", {volume: 1})
 	}
 	e.stopPropagation();
 }
@@ -61,8 +61,15 @@ function entrKeyListenerAll()
 						if(event.keyCode === 13) {
 							activeElement.click();
 						}
+						else if(event.keyCode === 81) {
+							alert("csooo")
+							
+						}
+						event.stopPropagation()
 					})
-		setTimeout(entrKeyListenerAll, 10);
+		setTimeout(entrKeyListenerAll, 1000);
 	}
 
 entrKeyListenerAll()
+
+

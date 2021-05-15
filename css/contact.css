@@ -4,7 +4,14 @@ h2 {
 	color: rgb(100, 100, 100);
 	text-transform: none;
 }
-
+table{
+	font-family: 'Roboto';
+	color: rgb(63, 63, 63);
+}
+table td:hover{
+	font-family: 'Roboto';
+	color: rgb(155, 155, 155);
+}
 .msg-form {
 	height: auto;
 	align-content: center;
@@ -24,6 +31,7 @@ h2 {
 	text-indent: 10px;
 	font-size: 14px;
 	margin-top: 30px;
+	margin-bottom: 40px;
 	caret-color: #5f5f5f;
 }
 
@@ -58,7 +66,7 @@ h2 {
 	height: 200px;
 	margin-top: 10px;
 	padding-top: 5px;
-	margin-bottom: 50px;
+	margin-bottom: 46px;
 }
 
 .btn {
@@ -80,11 +88,11 @@ h2 {
 }
 
 .vd-call-icon {
-	width: 280px;
+	width: 245px;
 	margin-left: 50%;
 	transform: translateX(-50%);
 	margin-top: 35px;
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 		
 }
 

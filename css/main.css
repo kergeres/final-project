@@ -52,6 +52,13 @@ header {
 	z-index: 999;
 }
 
+@keyframes bggani
+{
+	0%{background-position: 0% 0%;}
+	50%{background-position: 100% 0px;}
+	0%{background-position: 0% 0%;}
+}
+
 header div {
 	width: auto;
 	display: flex;
@@ -62,7 +69,7 @@ header div {
 
 main {
 	width: 100%;
-	min-height: 1800px;
+	/* min-height: 1800px; */
 	cursor: default;
 	background: rgb(137, 197, 200);
 	background: linear-gradient(0deg, rgba(137, 197, 200, 1) 0%, rgba(226, 250, 226, 1) 100%);
@@ -126,6 +133,7 @@ h2 {
 	background: #555;
 }
 
+
 #loader {
 	position: fixed;
 	left: 0px;
@@ -162,8 +170,8 @@ h2 {
 }
 
 .incorrect {
-	border: 1px solid red;
-	color: red;
+	border: 1px solid rgb(195, 1, 1);
+	color: rgb(195, 1, 1);
 }
 
 .history-table,
@@ -173,7 +181,7 @@ h2 {
 	position: relative;
 	width: 380px;
 	border-collapse: separate;
-	border-spacing: 0 2px;
+	border-spacing: 0 10px;
 	color: rgb(102, 102, 102);
 	cursor: pointer;
 }
@@ -182,7 +190,7 @@ h2 {
 	margin-left: 50%;
 	transform: translateX(-50%);
 	position: relative;
-	width: 900px;
+	width: 700px;
 	border-collapse: separate;
 	border-spacing: 0 20px;
 	color: rgb(102, 102, 102);
@@ -199,6 +207,11 @@ h2 {
 	text-align: center;
 	padding: 5px;
 }
+.res-table td:last-child {
+	width: 60px;
+	text-align: center;
+	padding: 5px;
+}
 
 .history-table td:nth-child(1) {
 	text-align: start;
@@ -211,6 +224,7 @@ h2 {
 
 .exc-table td:nth-child(1) {
 	width: 150px;
+	font-size: 20px;
 }
 
 .res-table td:nth-child(1) {
@@ -285,7 +299,7 @@ tr {
 
 .pag-btn {
 	right: 50px;
-	bottom: 30px;
+	bottom: 50px;
 	position: absolute;
 }
 
@@ -315,7 +329,7 @@ tr {
 	justify-content: center;
 	font-size: 50px;
 	font-weight: bold;
-	letter-spacing: 1.5px;
+	/* letter-spacing: px; */
 	z-index: 5;
 }
 
@@ -358,8 +372,10 @@ tr {
 	text-transform: uppercase;
 	margin-top: -30px;
 	margin-bottom: 60px;
-	letter-spacing: 5px;
+	letter-spacing: 1px;
+	font-size: 28px;
 }
+
 
 .ans-input {
 	border-radius: 10px;
@@ -385,6 +401,7 @@ tr {
 	height: 0.5px;
 	border: none;
 	margin-bottom: 40px;
+	margin-top: 6px;
 }
 
 .content-container p {

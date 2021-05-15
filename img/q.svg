@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="565" height="173" viewBox="0 0 565 173">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="silver"/>
+      <stop offset="1" stop-color="#969696"/>
+    </linearGradient>
+    <filter id="Rectangle_39" x="0" y="0" width="565" height="173" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.349"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_40" data-name="Group 40" transform="translate(-587 -743)">
+    <g transform="matrix(1, 0, 0, 1, 587, 743)" filter="url(#Rectangle_39)">
+      <g id="Rectangle_39-2" data-name="Rectangle 39" transform="translate(9 6)" stroke="#707070" stroke-width="1" fill="url(#linear-gradient)">
+        <rect width="547" height="155" rx="66" stroke="none"/>
+        <rect x="0.5" y="0.5" width="546" height="154" rx="65.5" fill="none"/>
+      </g>
+    </g>
+    <text id="Press_Q_for_help" data-name="Press Q for help" transform="translate(870 855)" fill="#424142" font-size="60" font-family="SegoeUI, Segoe UI"><tspan x="-214.075" y="0">Press </tspan><tspan y="0" font-size="69" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600">Q</tspan><tspan y="0" xml:space="preserve"> for help</tspan></text>
+  </g>
+</svg>

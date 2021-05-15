@@ -70,8 +70,9 @@ span p {
 
 .pad-container {
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translate(-50%, -57%);
 	width: 470px;
+top: 50vh;
 	min-height: 520px;
 	height: auto;
 	display: block;
@@ -91,7 +92,7 @@ span p {
 	font-size: 35px;
 	position: fixed;
 	top: -40px;
-	right: -360px;
+	right: -332px;
 	opacity: .6;
 	color: #303030;
 	cursor: pointer;
@@ -130,7 +131,7 @@ span p {
 	background-color: unset;
 	border: 2px solid var(--cyan);
 }
-
+/* 
 .answerinput {
 	width: 98%;
 	height: 90px;
@@ -142,7 +143,81 @@ span p {
 	padding: 5px;
 	line-height: 90px;
 	caret-color: #5f5f5f;
+} */
+.pressQ
+{
+
+	width: 140px;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+
 }
+.q-container
+{
+	width: 60px;
+	border-radius: 30px;
+	position: fixed;
+	height: 60px;
+	right: 50px;
+	bottom: 50px;
+
+		background: rgb(110,110,110);
+		background: radial-gradient(circle, rgba(110,110,110,1) 0%, rgba(178,176,176,1) 100%);
+
+	background-size: 500px;
+	transition: .2s;
+	transition-timing-function: ease-in;
+	cursor: pointer;
+	text-align: center;
+	opacity: .6;
+	z-index: 2;
+	animation: bg-anima 5s normal infinite;
+	box-shadow: 1px 1px 2px 2px rgba(22, 22, 22, 0.5);
+}
+@keyframes bg-anima
+{
+0%{background-position: -10% -80%;}
+50%{background-position: -90% 60%;}
+100%{background-position: -10% -80%;}
+}
+.q-container:hover 
+{
+	width: 250px;
+	opacity: .9;
+	/* box-shadow: 2px 2px 7px 3px rgba(37, 37, 37, 0.8); */
+	
+}
+
+.q-container:hover .presq::before
+{
+	content: "for help press ";
+	display: inline;
+	opacity: .8;
+	font-weight: normal;
+	
+}
+
+
+.presq
+{
+	/* border: 1px solid black; */
+	/* height: 60px; */
+font-weight: bold;
+	font-size: 30px;
+	transition: .4s;
+font-family: Arial, Helvetica, sans-serif;
+	width: 30px;
+	text-align: start;
+	margin-left: 18px;
+	margin-top: 13px;
+	width: 250px!important;
+	overflow: hidden;
+
+	
+	
+}
+
 
 .exc-title {
 	font-size: 1rem;
@@ -163,35 +238,37 @@ span p {
 .card-container {
 	left: 50%;
 	transform: translateX(-50%);
-	width: 450px;
+	margin-top: 10px;
+	width: 400px;
 	position: relative;
 	display: flex;
 	justify-content: space-between;
+	
 }
 
 .cat-card:first-child {
-	width: 170px;
+	width: 160px;
 	height: 180px;
 	cursor: pointer;
-	background-image: url(../img/SVG/math_2.svg);
+	background-image: url(../img/SVG/mathx.svg);
 	background-size: cover;
 	background-repeat: no-repeat;
+	opacity: 1;
 }
 
 .cat-card:nth-child(2) {
-	width: 180px;
+	width: 160px;
 	height: 180px;
 	cursor: pointer;
-	background-image: url(../img/SVG/history.svg);
+	background-image: url(../img/SVG/historyx.svg);
+	opacity: 1;
 }
 
-.cat-card:nth-child(2):hover {
-	background-image: url(../img/SVG/history_hover.svg);
+.cat-card:hover {
+opacity: .9;
 }
 
-.cat-card:first-child:hover {
-	background-image: url(../img/SVG/math_hover.svg);
-}
+
 
 .wrong-answer {
 	border: 1px solid var(--danger);

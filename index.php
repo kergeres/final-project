@@ -29,8 +29,10 @@
                <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="password">
                <button tabindex="1" onclick="logIn()"  id="login" type="submit">Log in</button>
                <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
-            </div>
+            </div> 
          </div>
+         <!-- <img class="presssdQ" src="img/q.svg"> -->
+         
       </main>
       <!-- The core Firebase JS SDK -->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
@@ -43,5 +45,6 @@
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
       <script src="script/main.js"></script>
       <script src="script/auth.js"></script>
+      
    </body>
 </html>

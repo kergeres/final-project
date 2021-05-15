@@ -21,9 +21,12 @@
             <div class="exc-container">
             </div>
          </div>
+         <div class="q-container"><p class="presq" >Q</p></div>
+         <!-- <img src="../img/q.svg" class="pressQ"/> -->
          <div id="loader">
          <div class="spinner"></div>
          </div>
+         
       </main>
       <!-- The core Firebase JS SDK  -->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
