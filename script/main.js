@@ -8,6 +8,18 @@ function showLoader(show) {
 		loader.classList.add("hide");
 	}
 }
+window.addEventListener("keyup", (event) => {
+	if (event.keyCode === 81 && event.altKey ) {
+	  responsiveVoice.speak("For navigate use the tab and tab plus shift.   For select, press the Enter.  For escape, press the escape key.")
+	  entrKeyListenerAll()
+	} 
+	if (event.keyCode === 27) {
+	  
+	 location.reload()
+	} 
+
+
+  });
 
 const _programs = [];
 
@@ -28,6 +40,7 @@ function tabEventList() {
 	let x = document.querySelectorAll(".badi");
 	for(i = 0; i < x.length; i++) {
 		x[i].addEventListener("focusin", sayLoudly, false)
+		
 	}
 }
 
@@ -42,7 +55,7 @@ function whereIsTheFocus() {
 function sayLoudly(e) {
 	if(e.target !== e.currentTarget) {
 		let focusedItem = e.target.innerText;
-		responsiveVoice.setDefaultRate(1.3);
+		responsiveVoice.setDefaultRate(1.2);
 		responsiveVoice.speak(focusedItem, "UK English Female", {volume: 1})
 	}
 	e.stopPropagation();
@@ -58,16 +71,15 @@ function entrKeyListenerAll()
 	{
 		let activeElement = document.activeElement;
 		activeElement.addEventListener("keyup", (event) => {
+			
 						if(event.keyCode === 13) {
 							activeElement.click();
 						}
-						else if(event.keyCode === 81) {
-							alert("csooo")
-							
-						}
-						event.stopPropagation()
+					
+						
 					})
-		setTimeout(entrKeyListenerAll, 1000);
+		setTimeout(entrKeyListenerAll, 3000);
+		
 	}
 
 entrKeyListenerAll()

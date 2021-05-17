@@ -37,15 +37,13 @@ function appendHistory(databaseIn) {
 			lengthOfTasks = Object.size(exc['excercise'])
 			htmlTemplate += `
       
-       <tr id="DIVI" onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title liu" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
+       <tr onclick="resultCheck('${exc.id}'); andLength('${exc.id}')" tabindex="1" class="exc-title" ><td>${exc.title}</td><td> ${exc.submitted}</td> <td>${exc.result}</td></tr>`;
 		}
 		// stopping the loader
 		showLoader(false)
 		document.querySelector(".exc-container").innerHTML = `<table class="history-table">${htmlTemplate}</table>`
 	}
 }
-
-
 
 
 let llength = 0
@@ -77,7 +75,7 @@ async function resultCheck(chosenId) {
           `
 		}
 	}
-	document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td><td>Task</td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}<tr><td></td><td></td><td><strong class="result">${sliceTomb.result}</strong></td><td></td></tr></table>`;
+	document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td><td>Task</td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}<tr><td></td><td></td><td tabindex="1"><strong  class="result">${sliceTomb.result}</strong></td><td></td></tr></table>`;
 	lengthOfTasks = 0
 };
 // array's length counter
@@ -130,4 +128,8 @@ function entrKeyListenerAll()
 	}
 
 entrKeyListenerAll()
+
+
+
+
 

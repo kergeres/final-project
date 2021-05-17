@@ -3,14 +3,14 @@ main {
 	height: 110vh !important;
 }
 
-p {
+/* p {
 	width: 250px;
 	text-align: center;
 	justify-content: center;
 	display: flex;
 	margin: 0 auto;
 	color: white !important;
-}
+} */
 
 input {
 	margin: 2px auto 30px auto;

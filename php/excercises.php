@@ -22,7 +22,7 @@
             </div>
          </div>
          <div class="q-container"><p class="presq" >Q</p></div>
-         <!-- <img src="../img/q.svg" class="pressQ"/> -->
+       
          <div id="loader">
          <div class="spinner"></div>
          </div>
@@ -35,8 +35,8 @@
        <!-- Global site tag (gtag.js) - Google Analytics -->
        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
-      <script src="../script/main.js"></script>
-      <script src="../script/excercises.js"></script>
+      <script type="text/javascript" src="../script/main.js"></script>
+      <script type="text/javascript" src="../script/excercises.js"></script>
       <!-- <script src="../script/auth.js"></script> -->
    </body>
 </html>

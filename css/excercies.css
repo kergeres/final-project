@@ -54,7 +54,7 @@ span p {
 	top: 45px;
 	width: 30px;
 	text-decoration: none;
-	color: rgb(73, 73, 73);
+	color: rgb(59, 59, 59);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 22px;
 	font-weight: bolder;
@@ -102,6 +102,17 @@ top: 50vh;
 .iksz:hover {
 	opacity: 1;
 }
+.eksz
+{
+	font-size: 35px;
+	position: fixed;
+	top: 55px;
+	right: 60px;
+	opacity: .6;
+	color: #303030;
+	cursor: pointer;
+	transition: .5s;
+}
 
 .no-hy:hover {
 	color: #666666;
@@ -131,92 +142,7 @@ top: 50vh;
 	background-color: unset;
 	border: 2px solid var(--cyan);
 }
-/* 
-.answerinput {
-	width: 98%;
-	height: 90px;
-	margin-top: 50px;
-	margin-left: 50%;
-	transform: translateX(-50%);
-	background-color: white;
-	border: none;
-	padding: 5px;
-	line-height: 90px;
-	caret-color: #5f5f5f;
-} */
-.pressQ
-{
 
-	width: 140px;
-	position: fixed;
-	right: 50px;
-	bottom: 50px;
-
-}
-.q-container
-{
-	width: 60px;
-	border-radius: 30px;
-	position: fixed;
-	height: 60px;
-	right: 50px;
-	bottom: 50px;
-
-		background: rgb(110,110,110);
-		background: radial-gradient(circle, rgba(110,110,110,1) 0%, rgba(178,176,176,1) 100%);
-
-	background-size: 500px;
-	transition: .2s;
-	transition-timing-function: ease-in;
-	cursor: pointer;
-	text-align: center;
-	opacity: .6;
-	z-index: 2;
-	animation: bg-anima 5s normal infinite;
-	box-shadow: 1px 1px 2px 2px rgba(22, 22, 22, 0.5);
-}
-@keyframes bg-anima
-{
-0%{background-position: -10% -80%;}
-50%{background-position: -90% 60%;}
-100%{background-position: -10% -80%;}
-}
-.q-container:hover 
-{
-	width: 250px;
-	opacity: .9;
-	/* box-shadow: 2px 2px 7px 3px rgba(37, 37, 37, 0.8); */
-	
-}
-
-.q-container:hover .presq::before
-{
-	content: "for help press ";
-	display: inline;
-	opacity: .8;
-	font-weight: normal;
-	
-}
-
-
-.presq
-{
-	/* border: 1px solid black; */
-	/* height: 60px; */
-font-weight: bold;
-	font-size: 30px;
-	transition: .4s;
-font-family: Arial, Helvetica, sans-serif;
-	width: 30px;
-	text-align: start;
-	margin-left: 18px;
-	margin-top: 13px;
-	width: 250px!important;
-	overflow: hidden;
-
-	
-	
-}
 
 
 .exc-title {

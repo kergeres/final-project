@@ -56,17 +56,26 @@ function appendCategories() {
 	showLoader(false)
 }
 appendCategories()
+
+
 // enter press listener for the categories card
 let mcardListener = document.querySelector(".cat-card");
 mcardListener.addEventListener("keyup", function(event) {
 	if(event.keyCode === 13) {
-		callHistEx()
+		mcardListener.click()
 	}
 });
 let cardListener = document.querySelector(".hs");
 cardListener.addEventListener("keyup", function(event) {
 	if(event.keyCode === 13) {
-		callMathEx()
+		cardListener.click()
+	}
+});
+
+// let cardListener = document.querySelector(".iksz");
+cardListener.addEventListener("keyup", function(event) {
+	if(event.keyCode === 13) {
+		appendCategories()
 	}
 });
 // display the chosen excercise list
@@ -222,10 +231,11 @@ function displayRecentAnswers(ansIn) {
         <tr>
         <td></td>
           <td></td>
-          <td><strong>${inPercent}</strong></td>
-       </tr>
+          <td tabindex="3" ><strong>${inPercent}</strong></td>
+       </tr> 
+	  
         </table> 
-        <button id="gbck" onclick="window.location.href='excercises.php'"class="btn pag-btn">Go back</button>
+        <a tabindex="1" onfocus="sayLoudly('exit')" href="excercises.php"><span class="eksz"><p>Exit</p>&#10005;</span></a>
       
     </div>`
 	firestoreUpload(idUanswerKex, title, inPercent, inNumbers)
@@ -274,3 +284,9 @@ gtag('js', new Date());
 
 gtag('config', 'UA-184145524-2');
 
+// window.addEventListener("keyup", (event) => {
+// 	if (event.keyCode === 13) {
+// 		document.querySelector('#next').click()
+// 	}
+
+//   });

@@ -37,8 +37,9 @@ function logIn() {
 			var errorMessage = error.message;
 			sayLoudly(errorCode);
 			sayLoudly(errorMessage);
+			// if the user is logged out, open the welcoming page
+		
 		});
-		// if the user is logged out, open the welcoming page
 		auth.onAuthStateChanged(function(user) {
 			if(user != null) {
 				window.open("php/excercises.php", "_self")
@@ -84,15 +85,15 @@ function signUp() {
 
 function sayLoudly(message) {
 	responsiveVoice.speak(message)
-}
+} 
 // append pages with SPA mode
 function appendSignUp() {
 	let htmlTemplate = "";
-	htmlTemplate = `<h1 onchange="sayLoudly('Sign up')" tabindex="1" class="title">Sign Up</h1>
-    <div class="auth-content-container">
+	htmlTemplate = `<h1 tabindex="-1" class="title">Sign Up</h1>
+    <div class="auth-content-container badi">
     
         <label for="email">Email</label>
-        <input autocomplete="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="emails">
+        <input autocomplete="email" onfocus="sayLoudly('Type email.')"  tabindex="1" id="emails">
     
         <label  for="password">Password</label>
         <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="passwords">
@@ -109,15 +110,16 @@ function appendSignUp() {
 function appendLogIn() {
 	let htmlTemplate = "";
 	htmlTemplate = `
-     <h1 tabindex="1" class="title">Log in</h1>
-     <div class="auth-content-container">
-        <label for="email">Email</label>
-        <input autocomplete="email" type="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="email">
-        <label  for="password">Password</label>
-        <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="password">
-        <button tabindex="1" onclick="logIn()"  id="login" type="submit">Log in</button>
-        <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
-     </div> `;
+    <h1 tabindex="-1" class="title">Log in</h1>
+            <div class="auth-content-container">
+               <label for="email">Email</label>
+               <input value="Email" autocomplete="email" type="email" tabindex="1" onfocus="sayLoudly('Type email.')"  id="email">
+               <label  for="password">Password</label>
+               <input value="pass1234" autocomplete="new-password" tabindex="1" onfocus="sayLoudly('Type Password')" type="password" id="password">
+               <button  onclick="logIn()" tabindex="1" id="login" type="submit">Log in</button>
+               <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
+               
+            </div>  `;
 	document.querySelector(".content-container").innerHTML = htmlTemplate;
 }
 
@@ -125,16 +127,17 @@ function logout() {
 	auth.signOut()
 	auth.onAuthStateChanged(function(user) {
 		if(user == null) {
-			alert("you logged in").then(setTimeout(window.open("../index.php", "replace"), 5000))
+			console.log("you logged out").then(setTimeout(window.open("../index.php", "replace"), 5000))
 		}
 	});
 }
 
 // eventlisteners for enter press for register and login
-let loginListener = document.getElementById("password");
+let loginListener = document.getElementById("login");
 loginListener.addEventListener("keyup", function(event) {
 	if(event.keyCode === 13) {
 		event.preventDefault();
+		console.log("ne");
 		logIn()
 	}
 });
@@ -151,16 +154,3 @@ gtag('js', new Date());
 
 gtag('config', 'UA-184145524-2');
 
-let starter = false;
-function welcomeMessage()
-{
-	document.body.addEventListener("click", ()=>{
-		if (starter == false)
-		{
-			sayLoudly("hello darling, this is the .100 welcome!")
-		}
-		starter=true
-	})
-
-}
-welcomeMessage()

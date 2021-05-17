@@ -14,25 +14,23 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
    </head>
    <body>
-      <div class="ham-cont" onclick="hamburgerNav()">
-         <label for="mobileicon" class="ham-menu-lineb"></label>
-         <label for="mobileicon" class="ham-menu-line"></label>
-         <label for="mobileicon" class="ham-menu-linea"></label>
-      </div>
-      <main >
+      
+      <main onload="appendLogIn()">
          <div class="content-container badi">
-            <h1 tabindex="1" class="title">Log in</h1>
+            <h1 tabindex="-1" class="title">Log in</h1>
             <div class="auth-content-container">
                <label for="email">Email</label>
-               <input autocomplete="email" type="email" onfocus="sayLoudly('Type email.')" tabindex="1" id="email">
+               <input value="Email" autocomplete="email" type="email" tabindex="1" onfocus="sayLoudly('Type email.')"  id="email">
                <label  for="password">Password</label>
-               <input autocomplete="new-password" type="password" onfocus="sayLoudly('Type password.')"  tabindex="1" id="password">
-               <button tabindex="1" onclick="logIn()"  id="login" type="submit">Log in</button>
+               <input value="pass1234" autocomplete="new-password" tabindex="1" onfocus="sayLoudly('Type Password')" type="password" id="password">
+               <button  onclick="logIn()" tabindex="1" id="login" type="submit">Log in</button>
                <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
-            </div> 
+               
+            </div>  
+            
          </div>
-         <!-- <img class="presssdQ" src="img/q.svg"> -->
          
+         <div class="q-container"><p class="presq">Q</p></div>
       </main>
       <!-- The core Firebase JS SDK -->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
@@ -43,8 +41,8 @@
        <!-- Global site tag (gtag.js) - Google Analytics -->
        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
-      <script src="script/main.js"></script>
-      <script src="script/auth.js"></script>
+      <script type="text/javascript" src="script/main.js"></script>
+      <script type="text/javascript" src="script/auth.js"></script>
       
    </body>
 </html>

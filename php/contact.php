@@ -47,8 +47,11 @@
                      <td><a tabindex="1" onfocus="sayLoudly('email: ninglor@gmail.com')" href = "mailto:kergeres@gmail.com">ninglor@gmail.com</a></td>
                   </tr>
                </table>
+               
             </div>
+            
          </div>
+         <div class="q-container"><p class="presq">Q</p></div>
       </main>
       <!-- The core Firebase JS SDK-->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
