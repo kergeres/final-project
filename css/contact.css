@@ -4,14 +4,17 @@ h2 {
 	color: rgb(100, 100, 100);
 	text-transform: none;
 }
-table{
+
+table {
 	font-family: 'Roboto';
 	color: rgb(63, 63, 63);
 }
-table td:hover{
+
+table td:hover {
 	font-family: 'Roboto';
 	color: rgb(155, 155, 155);
 }
+
 .msg-form {
 	height: auto;
 	align-content: center;
@@ -93,7 +96,6 @@ table td:hover{
 	transform: translateX(-50%);
 	margin-top: 35px;
 	margin-bottom: 30px;
-		
 }
 
 .name-tag {
@@ -103,4 +105,3 @@ table td:hover{
 	margin-bottom: 70px;
 	color: teal;
 }
-

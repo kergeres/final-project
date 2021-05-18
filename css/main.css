@@ -52,11 +52,16 @@ header {
 	z-index: 999;
 }
 
-@keyframes bggani
-{
-	0%{background-position: 0% 0%;}
-	50%{background-position: 100% 0px;}
-	0%{background-position: 0% 0%;}
+@keyframes bggani {
+	0% {
+		background-position: 0% 0%;
+	}
+	50% {
+		background-position: 100% 0px;
+	}
+	0% {
+		background-position: 0% 0%;
+	}
 }
 
 header div {
@@ -86,7 +91,6 @@ nav {
 	padding-top: 40px;
 	position: absolute;
 	left: 0px;
-
 }
 
 nav p {
@@ -132,7 +136,6 @@ h2 {
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
 }
-
 
 #loader {
 	position: fixed;
@@ -197,65 +200,65 @@ h2 {
 	cursor: pointer;
 }
 
-.q-container
-{
+.q-container {
 	width: 60px;
 	border-radius: 30px;
 	position: fixed;
 	height: 60px;
 	right: 50px;
 	bottom: 50px;
-
-		background: rgb(110,110,110);
-		background: radial-gradient(circle, rgba(110,110,110,1) 0%, rgba(178,176,176,1) 100%);
-
+	background: rgb(110, 110, 110);
+	background: radial-gradient(circle, rgba(110, 110, 110, 1) 0%, rgba(178, 176, 176, 1) 100%);
+	overflow: hidden;
 	background-size: 700px;
-	transition: .2s;
+	transition: .3s;
 	transition-timing-function: ease-in;
 	cursor: pointer;
 	text-align: center;
-	opacity: 0.3;
-	z-index: 2;
+	opacity: 0.5;
+	z-index: 2!important;
 	animation: bg-anima 8s normal infinite;
 	box-shadow: 1px 1px 2px 2px rgba(22, 22, 22, 0.5);
 }
 
-.q-container:hover 
-{
-	width: 280px;
-	opacity: .9;
-
-	
+.mobil {
+	top: 45vh;
+	position: fixed;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-transform: unset;
+	color: rgb(68, 68, 68);
+	font-family: 'roboto';
 }
 
-.q-container:hover .presq::before
-{
-	content: "for help press ALT+ ";
+.q-container:hover {
+	width: 270px;
+	opacity: .9;
+}
+
+.q-container:hover .presq::before {
+	content: " for help press ALT+ ";
 	display: inline;
 	opacity: .8;
 	font-weight: normal;
 	font-size: 25px;
-	
+	z-index: -1!important;
 }
 
-
-.presq
-{
-
+.presq {
 	font-weight: bold;
-	font-size: 30px!important;
+	font-size: 35px!important;
 	transition: .4s;
-	font-family: 'Niveau Grotesk';
+	font-family: "niveau-grotesk";
 	width: 30px;
 	text-align: start;
-	margin-left: 18px;
-	margin-top: 13px;
+	margin-left: 17px;
+	margin-top: 10px;
 	width: 250px!important;
-	overflow: hidden;
-color: rgb(36, 36, 36);
-	
-	
+	color: rgb(36, 36, 36);
+	z-index: -1;
 }
+
 .history-table td,
 .exc-table td {
 	text-align: center;
@@ -266,6 +269,7 @@ color: rgb(36, 36, 36);
 	text-align: center;
 	padding: 5px;
 }
+
 .res-table td:last-child {
 	width: 60px;
 	text-align: center;
@@ -361,12 +365,13 @@ tr {
 	bottom: 50px;
 	position: absolute;
 }
-.gb-btn
-{
-   right: 140px; 
-    bottom: -60px; 
-    position: absolute;
+
+.gb-btn {
+	right: 140px;
+	bottom: -60px;
+	position: absolute;
 }
+
 .logo {
 	width: 90px;
 	left: 60px;
@@ -439,7 +444,6 @@ tr {
 	letter-spacing: 1px;
 	font-size: 28px;
 }
-
 
 .ans-input {
 	border-radius: 10px;
@@ -517,9 +521,15 @@ tr {
 		transform: rotate(360deg);
 	}
 }
-@keyframes bg-anima
-{
-0%{background-position: -10% -80%;}
-50%{background-position: -90% 60%;}
-100%{background-position: -10% -80%;}
+
+@keyframes bg-anima {
+	0% {
+		background-position: -10% -80%;
+	}
+	50% {
+		background-position: -90% 60%;
+	}
+	100% {
+		background-position: -10% -80%;
+	}
 }

@@ -14,7 +14,6 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
    </head>
    <body>
-      
       <main onload="appendLogIn()">
          <div class="content-container badi">
             <h1 tabindex="-1" class="title">Log in</h1>
@@ -25,12 +24,11 @@
                <input value="pass1234" autocomplete="new-password" tabindex="1" onfocus="sayLoudly('Type Password')" type="password" id="password">
                <button  onclick="logIn()" tabindex="1" id="login" type="submit">Log in</button>
                <button class="txt-btn" onclick="appendSignUp()" id="signUpText" tabindex="1">You Dont't have account? Press enter to sign up.</button>
-               
-            </div>  
-            
+            </div>
          </div>
-         
-         <div class="q-container"><p class="presq">Q</p></div>
+         <div class="q-container">
+            <p class="presq">Q</p>
+         </div>
       </main>
       <!-- The core Firebase JS SDK -->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
@@ -38,11 +36,10 @@
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
       <!-- https://firebase.google.com/docs/web/setup#available-libraries  -->
       <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
-       <!-- Global site tag (gtag.js) - Google Analytics -->
-       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
       <script type="text/javascript" src="script/main.js"></script>
       <script type="text/javascript" src="script/auth.js"></script>
-      
    </body>
 </html>
