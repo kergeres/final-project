@@ -18,6 +18,16 @@ db.settings(
 	timestamsInSnapshots: true
 });
 
+// Initialize Google analytics
+window.dataLayer = window.dataLayer || [];
+
+function gtag()
+{
+	dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-184145524-2');
+
 // watch the database ref for changes
 let resultArray = []
 let resultArrayy = []
@@ -236,7 +246,7 @@ function displayRecentAnswers(ansIn)
 		let tasksKey = indexCounter(counter)
 		let task = indexCounterTask(counter)
 		// if the answer was incorrect the element gets 1 as tabindex, so it will be fouced first
-		let wrongTabIndex = run[counter].toLowerCase() != tasksKey.toLowerCase() ? '2' : ''
+		let wrongTabIndex = run[counter].toLowerCase() != tasksKey.toLowerCase() ? '1' : '2'
 		// if the answer was incorrect the element gets a red bordered class to mark it as incorrect
 		let activeClass = run[counter].toLowerCase() != tasksKey.toLowerCase() ? 'incorrect' : ''
 		correctAnswerCounter = run[counter].toLowerCase() == tasksKey.toLowerCase() ? correctAnswerCounter + 1 : correctAnswerCounter
@@ -321,13 +331,3 @@ function logout()
 	});
 }
 
-
-window.dataLayer = window.dataLayer || [];
-
-function gtag()
-{
-	dataLayer.push(arguments);
-}
-gtag('js', new Date());
-
-gtag('config', 'UA-184145524-2');

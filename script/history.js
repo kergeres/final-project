@@ -79,15 +79,15 @@ async function resultCheck(chosenId)
 		if (sliceTomb['excercise'][k]['key'] != 'undefined')
 		{
 			let activeClass = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? 'incorrect' : ''
-			let incorrectTabindex = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? '0' : ''
+			let incorrectTabindex = sliceTomb['excercise'][k]['key'].toLowerCase() != sliceTomb['excercise'][k]['userAns'].toLowerCase() ? '0' : '2'
 			markup += `
          <tr tabindex="${incorrectTabindex}"><td>${k+1}.</td><td>${sliceTomb['excercise'][k]['task']}</td><td  class="${activeClass}" >${sliceTomb['excercise'][k]['userAns']}</td><td >${sliceTomb['excercise'][k]['key']}</td></tr>
           `
 		}
 	}
-	document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr><td><td>Task</td></td><td id="userAnswer">Answer</td><td>key</td></tr>${markup}<tr><td></td><td></td><td id="inpercent" tabindex="1"><strong  class="result">${sliceTomb.result}</strong></td><td></td></tr></table>`;
+	document.querySelector(".exc-container").innerHTML = `<table class="res-table"><tr class="headertitle" tabindex="0"><td>Results of:<td>${sliceTomb.title}</td></td><td id="userAnswer">${sliceTomb.submitted}</td><td>${sliceTomb.result}</td></tr>  <tr><th>Task</th><th id="userAnswer">Answer</th><th>key</th></tr>${markup}</table>`;
 	lengthOfTasks = 0
-	document.querySelector("#inpercent").focus()
+	// document.querySelector("#inpercent").focus()
 
 };
 // array's length counter

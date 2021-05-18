@@ -17,6 +17,15 @@ db.settings(
 {
 	timestamsInSnapshots: true
 });
+// Initialize google analytics 
+window.dataLayer = window.dataLayer || [];
+
+function gtag()
+{
+	dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-184145524-2');
 // sign up with email and password to fireabse
 function fireBaseSignup()
 {
@@ -38,6 +47,7 @@ function logIn()
 		// catch the possibly errors and read them aloud
 		auth.signInWithEmailAndPassword(emailInput, passInput).catch((error) =>
 		{
+			// inform the user (audio) possible errors
 			var errorCode = error.code;
 			var errorMessage = error.message;
 			sayLoudly(errorCode);
@@ -45,6 +55,7 @@ function logIn()
 			// if the user is logged out, open the welcoming page
 
 		});
+		// if the user logged in, open the exercises file
 		auth.onAuthStateChanged(function (user)
 		{
 			if (user != null)
@@ -67,14 +78,14 @@ function logIn()
 		sayLoudly("password is required")
 	}
 }
-
+// log in with firesbase
 function fireBaseLogIn()
 {
 	let passInput = document.querySelector("#password").value
 	let emailInput = document.querySelector("#email").value
 	auth.signInWithEmailAndPassword(emailInput, passInput)
 }
-
+// sign up with firesbase
 function signUp()
 {
 	let passInput = document.querySelector("#passwords").value
@@ -104,7 +115,7 @@ function signUp()
 	}
 	else if (passInput !== passInputRe)
 	{
-		sayLoudly("password are not match")
+		sayLoudly("passwords are not match")
 	}
 }
 
@@ -182,15 +193,6 @@ regListener.addEventListener("keyup", function (event)
 	}
 });
 
-window.dataLayer = window.dataLayer || [];
-
-function gtag()
-{
-	dataLayer.push(arguments);
-}
-gtag('js', new Date());
-
-gtag('config', 'UA-184145524-2');
 
 let mail = document.querySelector("#email")
 mail.addEventListener("click", function ()

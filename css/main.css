@@ -74,7 +74,6 @@ header div {
 
 main {
 	width: 100%;
-	/* min-height: 1800px; */
 	cursor: default;
 	background: rgb(137, 197, 200);
 	background: linear-gradient(0deg, rgba(137, 197, 200, 1) 0%, rgba(226, 250, 226, 1) 100%);
@@ -190,13 +189,13 @@ h2 {
 }
 
 .res-table {
-	margin-left: 50%;
+	margin-left: 48%;
 	transform: translateX(-50%);
 	position: relative;
-	width: 700px;
+	width: 750px;
 	border-collapse: separate;
 	border-spacing: 0 20px;
-	color: rgb(102, 102, 102);
+	color: rgb(100, 100, 100);
 	cursor: pointer;
 }
 
@@ -271,11 +270,16 @@ h2 {
 }
 
 .res-table td:last-child {
-	width: 60px;
 	text-align: center;
 	padding: 5px;
 }
-
+.headertitle
+{
+	color: var(--cyan);
+	margin-bottom: 40px;
+	border: 1px solid black;
+	font-size: 25px;
+}
 .history-table td:nth-child(1) {
 	text-align: start;
 }
@@ -291,9 +295,8 @@ h2 {
 }
 
 .res-table td:nth-child(1) {
-	width: 40px;
+	
 	font-weight: bold;
-	display: flex;
 }
 
 .history-table tr:hover,
