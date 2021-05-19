@@ -60,8 +60,9 @@
        <!-- Global site tag (gtag.js) - Google Analytics -->
        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-184145524-2"></script>
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=rAskuAab"></script>
-      <script type="text/javascript" src="../script/main.js"></script>
       <script type="text/javascript"  src="../script/auth.js"></script>
+      <script type="text/javascript" src="../script/main.js"></script>
+     
      
       
 

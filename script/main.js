@@ -15,8 +15,8 @@ function showLoader(show)
 // inform the not deskop user to use desktop
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 {
-	document.body.innerHTML = `<h1 class='mobil'>Pleas open the site on desktop</h1>
-	<h2 class='mobil'>The website is not available for tablet or smartphone</h2>`;
+	document.body.innerHTML = `<div class="mobile-container"><h1 class='mobil'>Pleas open the site on desktop</h1>
+	<h2 class="mobil-al">The website is not available for tablet or smartphone</h2></div>`;
 }
 
 // play help function if the user click the alt + q combination

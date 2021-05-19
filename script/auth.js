@@ -60,7 +60,7 @@ function logIn()
 		{
 			if (user != null)
 			{
-				window.open("php/excercises.php", "_self")
+				window.open("php/exercises.php", "_self")
 			}
 		});
 	}
@@ -162,6 +162,7 @@ function appendLogIn()
 	document.querySelector(".content-container").innerHTML = htmlTemplate;
 }
 
+// logout function and display the welcoming page.
 function logout()
 {
 	auth.signOut()
@@ -169,7 +170,7 @@ function logout()
 	{
 		if (user == null)
 		{
-			console.log("you logged out").then(setTimeout(window.open("../index.php", "replace"), 5000))
+			window.open("../index.php", "_self")
 		}
 	});
 }

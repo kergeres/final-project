@@ -123,7 +123,7 @@ function appendExcercises(databaseIn)
   </table>`;
 	showLoader(false)
 }
-// identify the chosen excercise and calls the function which displays the chosen excercise tasks
+// identify the chosen exercise and calls the function which displays the chosen exercise tasks
 let chosenArray = ["jeg er empty"];
 let startdate = 0;
 
@@ -179,7 +179,7 @@ function appendSlides(slideNr)
 	{
 		let taskX = ubolt[0].tasks[`task${slideNr}`]
 		htmlTemplate = `<div class="exc-containerr animo"><div class="pad-container">
-       <a tabindex="1" onfocus="sayLoudly('exit')" href="excercises.php"><span class="iksz"><p>Exit</p>✕</span></a>
+       <a tabindex="1" onfocus="sayLoudly('exit')" href="exercises.php"><span class="iksz"><p>Exit</p>✕</span></a>
        <table class="proc-table">
        <tr><td class="proc taskx-anima">${slideNr}</td><td class="proc ">/${Object.size(ubolt[0].tasks)}</td></tr>
         
@@ -284,7 +284,7 @@ function displayRecentAnswers(ansIn)
        </tr> 
 	  
         </table> 
-        <a tabindex="1" onfocus="sayLoudly('exit')" href="excercises.php"><span class="eksz"><p>Exit</p>✕</span></a>
+        <a tabindex="1" onfocus="sayLoudly('exit')" href="exercises.php"><span class="eksz"><p>Exit</p>✕</span></a>
       
     </div>`
 	firestoreUpload(idUanswerKex, title, inPercent, inNumbers)

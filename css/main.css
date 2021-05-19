@@ -213,18 +213,39 @@ h2 {
 	text-align: center;
 	opacity: 0.5;
 	z-index: 2!important;
-	box-shadow: 1px 1px 2px 2px rgba(22, 22, 22, 0.5);
+	box-shadow: 1px 1px 4px 1px rgba(22, 22, 22, 0.5);
 	background-color: none;
 }
-
+.mobile-container
+{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	padding-top: 30vh;
+}
 .mobil {
-	top: 45vh;
+
 	position: fixed;
 	margin-left: 50%;
 	transform: translateX(-50%);
 	text-transform: unset;
-	color: rgb(68, 68, 68);
+	color: rgb(80, 80, 80);
 	font-family: 'roboto';
+	font-size: 19px;
+	width: 100%;
+}
+.mobil-al {
+	position: fixed;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	text-transform: unset;
+	color: rgb(117, 117, 117);
+	font-family: 'roboto';
+	font-size: 14px;
+	width: 80%;
+	text-align: center;
+	margin-top: 30px;
+	
 }
 
 .q-container:hover {

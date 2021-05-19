@@ -19,7 +19,7 @@
             <h1 tabindex="-1" class="title">Log in</h1>
             <div class="auth-content-container">
                <label for="email">Email</label>
-               <input value="Email" autocomplete="email" type="email" tabindex="1" onfocus="sayLoudly('Type email.')"  id="email">
+               <input value="E-mail" autocomplete="email" type="email" tabindex="1" onfocus="sayLoudly('Type email.')"  id="email">
                <label  for="password">Password</label>
                <input value="pass1234" autocomplete="new-password" tabindex="1" onfocus="sayLoudly('Type Password')" type="password" id="password">
                <button  onclick="logIn()" tabindex="1" id="login" type="submit">Log in</button>
