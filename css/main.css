@@ -206,18 +206,15 @@ h2 {
 	height: 60px;
 	right: 50px;
 	bottom: 50px;
-	background: rgb(110, 110, 110);
-	background: radial-gradient(circle, rgba(110, 110, 110, 1) 0%, rgba(178, 176, 176, 1) 100%);
 	overflow: hidden;
-	background-size: 700px;
 	transition: .3s;
 	transition-timing-function: ease-in;
 	cursor: pointer;
 	text-align: center;
 	opacity: 0.5;
 	z-index: 2!important;
-	animation: bg-anima 8s normal infinite;
 	box-shadow: 1px 1px 2px 2px rgba(22, 22, 22, 0.5);
+	background-color: none;
 }
 
 .mobil {
@@ -401,7 +398,6 @@ tr {
 	justify-content: center;
 	font-size: 50px;
 	font-weight: bold;
-	/* letter-spacing: px; */
 	z-index: 5;
 }
 
@@ -525,14 +521,3 @@ tr {
 	}
 }
 
-@keyframes bg-anima {
-	0% {
-		background-position: -10% -80%;
-	}
-	50% {
-		background-position: -90% 60%;
-	}
-	100% {
-		background-position: -10% -80%;
-	}
-}
