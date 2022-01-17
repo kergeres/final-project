@@ -14,21 +14,19 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 db.settings(
-{
-	timestamsInSnapshots: true
-});
+	{
+		timestamsInSnapshots: true
+	});
 // Initialize google analytics 
 window.dataLayer = window.dataLayer || [];
 
-function gtag()
-{
+function gtag() {
 	dataLayer.push(arguments);
 }
 gtag('js', new Date());
 gtag('config', 'UA-184145524-2');
 // sign up with email and password to fireabse
-function fireBaseSignup()
-{
+function fireBaseSignup() {
 	let passInput = document.querySelector("#passwords").value
 	let emailInput = document.querySelector("#emails").value
 	firebase.auth().createUserWithEmailAndPassword(emailInput, passInput)
@@ -36,17 +34,14 @@ function fireBaseSignup()
 }
 
 // login with the previously created data
-function logIn()
-{
+function logIn() {
 	let passInput = document.querySelector("#password").value
 	let emailInput = document.querySelector("#email").value
-	if (passInput !== "" && emailInput !== "")
-	{
+	if (passInput !== "" && emailInput !== "") {
 		let passInput = document.querySelector("#password").value
 		let emailInput = document.querySelector("#email").value
 		// catch the possibly errors and read them aloud
-		auth.signInWithEmailAndPassword(emailInput, passInput).catch((error) =>
-		{
+		auth.signInWithEmailAndPassword(emailInput, passInput).catch((error) => {
 			// inform the user (audio) possible errors
 			var errorCode = error.code;
 			var errorMessage = error.message;
@@ -56,76 +51,61 @@ function logIn()
 
 		});
 		// if the user logged in, open the exercises file
-		auth.onAuthStateChanged(function (user)
-		{
-			if (user != null)
-			{
-				window.open("php/exercises.php", "_self")
+		auth.onAuthStateChanged(function (user) {
+			if (user != null) {
+				window.open("php/exercises.html", "_self")
 			}
 		});
 	}
 	// checking if every input is filled correctly for auth.
-	else if (passInput == "" && emailInput == "")
-	{
+	else if (passInput == "" && emailInput == "") {
 		sayLoudly("Email and password is required.")
 	}
-	else if (emailInput == "")
-	{
+	else if (emailInput == "") {
 		sayLoudly("email is required")
 	}
-	else if (passInput == "")
-	{
+	else if (passInput == "") {
 		sayLoudly("password is required")
 	}
 }
 // log in with firesbase
-function fireBaseLogIn()
-{
+function fireBaseLogIn() {
 	let passInput = document.querySelector("#password").value
 	let emailInput = document.querySelector("#email").value
 	auth.signInWithEmailAndPassword(emailInput, passInput)
 }
 // sign up with firesbase
-function signUp()
-{
+function signUp() {
 	let passInput = document.querySelector("#passwords").value
 	let passInputRe = document.querySelector("#passwordRe").value
 	let emailInput = document.querySelector("#emails").value
-	if (passInput.length > 5 && emailInput !== "" && passInput == passInputRe)
-	{
+	if (passInput.length > 5 && emailInput !== "" && passInput == passInputRe) {
 		fireBaseSignup()
 		sayLoudly("You signed up")
 		appendLogIn();
 	}
-	else if (passInput == "" && emailInput == "")
-	{
+	else if (passInput == "" && emailInput == "") {
 		sayLoudly("Email and password is required.")
 	}
-	else if (emailInput == "")
-	{
+	else if (emailInput == "") {
 		sayLoudly("email is required")
 	}
-	else if (passInput == "")
-	{
+	else if (passInput == "") {
 		sayLoudly("password is required")
 	}
-	else if (passInput.length < 5)
-	{
+	else if (passInput.length < 5) {
 		sayLoudly("password minimum 6 characters")
 	}
-	else if (passInput !== passInputRe)
-	{
+	else if (passInput !== passInputRe) {
 		sayLoudly("passwords are not match")
 	}
 }
 
-function sayLoudly(message)
-{
+function sayLoudly(message) {
 	responsiveVoice.speak(message)
 }
 // append pages with SPA mode
-function appendSignUp()
-{
+function appendSignUp() {
 	let htmlTemplate = "";
 	htmlTemplate = `<h1 tabindex="-1" class="title">Sign Up</h1>
     <div class="auth-content-container badi">
@@ -145,8 +125,7 @@ function appendSignUp()
 
 // append pages with SPA mode
 
-function appendLogIn()
-{
+function appendLogIn() {
 	let htmlTemplate = "";
 	htmlTemplate = `
     <h1 tabindex="-1" class="title">Log in</h1>
@@ -163,45 +142,36 @@ function appendLogIn()
 }
 
 // logout function and display the welcoming page.
-function logout()
-{
+function logout() {
 	auth.signOut()
-	auth.onAuthStateChanged(function (user)
-	{
-		if (user == null)
-		{
-			window.open("../index.php", "_self")
+	auth.onAuthStateChanged(function (user) {
+		if (user == null) {
+			window.open("../index.html", "_self")
 		}
 	});
 }
 
 // eventlisteners for enter press for register and login
 let loginListener = document.getElementById("login");
-loginListener.addEventListener("keyup", function (event)
-{
-	if (event.keyCode === 13)
-	{
+loginListener.addEventListener("keyup", function (event) {
+	if (event.keyCode === 13) {
 		event.preventDefault();
 		logIn()
 	}
 });
 let regListener = document.getElementById("signUpText");
-regListener.addEventListener("keyup", function (event)
-{
-	if (event.keyCode === 13)
-	{
+regListener.addEventListener("keyup", function (event) {
+	if (event.keyCode === 13) {
 		appendSignUp()
 	}
 });
 
 
 let mail = document.querySelector("#email")
-mail.addEventListener("click", function ()
-{
+mail.addEventListener("click", function () {
 	mail.select()
 })
 let pw = document.querySelector("#password")
-pw.addEventListener("click", function ()
-{
+pw.addEventListener("click", function () {
 	pw.select()
 })

@@ -14,15 +14,14 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 db.settings(
-{
-	timestamsInSnapshots: true
-});
+	{
+		timestamsInSnapshots: true
+	});
 
 // Initialize Google analytics
 window.dataLayer = window.dataLayer || [];
 
-function gtag()
-{
+function gtag() {
 	dataLayer.push(arguments);
 }
 gtag('js', new Date());
@@ -32,15 +31,12 @@ gtag('config', 'UA-184145524-2');
 let resultArray = []
 let resultArrayy = []
 // history exercise list-database reference
-function callHistEx()
-{
+function callHistEx() {
 	showLoader(true)
 	const historyRef = db.collection("history-exercises");
-	historyRef.orderBy("id").onSnapshot(function (snapshotData)
-	{
+	historyRef.orderBy("id").onSnapshot(function (snapshotData) {
 		resultArrayy = []
-		snapshotData.forEach(doc =>
-		{
+		snapshotData.forEach(doc => {
 			let ex = doc.data();
 			resultArray.push(ex);
 		});
@@ -48,15 +44,12 @@ function callHistEx()
 	});
 }
 // math exercise list-database reference
-function callMathEx()
-{
+function callMathEx() {
 	showLoader(true)
 	const mathRef = db.collection("mathematics-exercises");
-	mathRef.orderBy("id").onSnapshot(function (snapshotData)
-	{
+	mathRef.orderBy("id").onSnapshot(function (snapshotData) {
 		resultArray = []
-		snapshotData.forEach(doc =>
-		{
+		snapshotData.forEach(doc => {
 			let ex = doc.data();
 			resultArray.push(ex);
 		});
@@ -65,8 +58,7 @@ function callMathEx()
 }
 
 // display the two categories to the DOM
-function appendCategories()
-{
+function appendCategories() {
 	let htmlTemplate = `<div class="card-container">
   <div tabindex="1"  class="cat-card"  onclick="callMathEx()"><p>Mathetmatics</p></div>
   <div tabindex="1"   class="cat-card hs"  onclick="callHistEx()"><p>History</p></div>
@@ -78,37 +70,29 @@ appendCategories()
 
 // enter press listener for the categories card
 let mcardListener = document.querySelector(".cat-card");
-mcardListener.addEventListener("keyup", function (event)
-{
-	if (event.keyCode === 13)
-	{
+mcardListener.addEventListener("keyup", function (event) {
+	if (event.keyCode === 13) {
 		mcardListener.click()
 	}
 });
 let cardListener = document.querySelector(".hs");
-cardListener.addEventListener("keyup", function (event)
-{
-	if (event.keyCode === 13)
-	{
+cardListener.addEventListener("keyup", function (event) {
+	if (event.keyCode === 13) {
 		cardListener.click()
 	}
 });
 
 // let cardListener = document.querySelector(".iksz");
-cardListener.addEventListener("keyup", function (event)
-{
-	if (event.keyCode === 13)
-	{
+cardListener.addEventListener("keyup", function (event) {
+	if (event.keyCode === 13) {
 		appendCategories()
 	}
 });
 // display the chosen excercise list
-function appendExcercises(databaseIn)
-{
+function appendExcercises(databaseIn) {
 	let htmlTemplate = "";
 	document.querySelector(".exc-container").innerHTML = ""
-	for (let exc of databaseIn)
-	{
+	for (let exc of databaseIn) {
 		htmlTemplate += `
     <tr>
     <td onclick="openExcercise('${exc.id}')" tabindex="1">${exc.title}</td>
@@ -127,12 +111,9 @@ function appendExcercises(databaseIn)
 let chosenArray = ["jeg er empty"];
 let startdate = 0;
 
-function openExcercise(excId)
-{
-	for (const fut of resultArray)
-	{
-		if (fut.id == excId)
-		{
+function openExcercise(excId) {
+	for (const fut of resultArray) {
+		if (fut.id == excId) {
 			chosenArray.fill(resultArray.slice(fut.id - 1, fut.id));
 			appendSlides(1)
 			document.querySelector("#taskx").focus()
@@ -142,17 +123,14 @@ function openExcercise(excId)
 	}
 }
 
-function stopWatchForDuration()
-{
+function stopWatchForDuration() {
 	startdate = new Date()
 }
 let slidenumber = 1;
 let answersFromUser = [];
 // take the next slide on the Next click, calls the function which displays them
-function pagination()
-{
-	document.querySelector("#next").addEventListener('click', function ()
-	{
+function pagination() {
+	document.querySelector("#next").addEventListener('click', function () {
 		// save the users answer. if the input is empty store a hypen as a value
 		let answer = document.querySelector("#answer").value != "" ? document.querySelector("#answer").value : "-"
 		let idPlusAns = {};
@@ -162,8 +140,7 @@ function pagination()
 		appendSlides(slidenumber)
 		document.querySelector("#taskx").focus()
 		// animation for the slide
-		if (slidenumber != 1)
-		{
+		if (slidenumber != 1) {
 			document.querySelector(".exc-containerr").classList.remove("animo")
 			document.querySelector(".taskx").classList.remove("taskx-anima")
 			document.querySelector(".ans").classList.remove("taskx-anima")
@@ -171,15 +148,13 @@ function pagination()
 	})
 }
 // displays all of the slides to the DOM
-function appendSlides(slideNr)
-{
+function appendSlides(slideNr) {
 	let lengthOfTasks = 0
 	let htmlTemplate = "";
-	for (let ubolt of chosenArray)
-	{
+	for (let ubolt of chosenArray) {
 		let taskX = ubolt[0].tasks[`task${slideNr}`]
 		htmlTemplate = `<div class="exc-containerr animo"><div class="pad-container">
-       <a tabindex="1" onfocus="sayLoudly('exit')" href="exercises.php"><span class="iksz"><p>Exit</p>✕</span></a>
+       <a tabindex="1" onfocus="sayLoudly('exit')" href="exercises.html"><span class="iksz"><p>Exit</p>✕</span></a>
        <table class="proc-table">
        <tr><td class="proc taskx-anima">${slideNr}</td><td class="proc ">/${Object.size(ubolt[0].tasks)}</td></tr>
         
@@ -194,41 +169,33 @@ function appendSlides(slideNr)
 		lengthOfTasks = Object.size(ubolt[0].tasks)
 	}
 	// display the slides as long as there is task left
-	if (slideNr <= lengthOfTasks)
-	{
+	if (slideNr <= lengthOfTasks) {
 		document.querySelector(".exc-container").innerHTML = htmlTemplate;
 		pagination()
 	}
-	else
-	{
+	else {
 		displayRecentAnswers(answersFromUser)
 	}
 }
 // counting the length of the tasks 
-Object.size = function (obj)
-{
+Object.size = function (obj) {
 	var size = 0,
 		key;
-	for (key in obj)
-	{
+	for (key in obj) {
 		if (obj.hasOwnProperty(key)) size++;
 	}
 	return size;
 };
 let szamok = 1;
 
-function indexCounter(taskId)
-{
-	for (const iti of chosenArray)
-	{
+function indexCounter(taskId) {
+	for (const iti of chosenArray) {
 		return iti[0].keys[`key${taskId}`]
 	}
 }
 
-function indexCounterTask(taskId)
-{
-	for (const iti of chosenArray)
-	{
+function indexCounterTask(taskId) {
+	for (const iti of chosenArray) {
 		return iti[0].tasks[`task${taskId}`]
 	}
 }
@@ -236,13 +203,11 @@ let idUanswerKex = []
 // display the results of the excercises after the slideshow of the excercise
 let counter = 1;
 
-function displayRecentAnswers(ansIn)
-{
+function displayRecentAnswers(ansIn) {
 	let title = "g"
 	let htmlTemplate = ""
 	let correctAnswerCounter = 0;
-	for (const run of ansIn)
-	{
+	for (const run of ansIn) {
 		let tasksKey = indexCounter(counter)
 		let task = indexCounterTask(counter)
 		// if the answer was incorrect the element gets 1 as tabindex, so it will be fouced first
@@ -251,23 +216,22 @@ function displayRecentAnswers(ansIn)
 		let activeClass = run[counter].toLowerCase() != tasksKey.toLowerCase() ? 'incorrect' : ''
 		correctAnswerCounter = run[counter].toLowerCase() == tasksKey.toLowerCase() ? correctAnswerCounter + 1 : correctAnswerCounter
 		htmlTemplate += `<tr tabindex="${wrongTabIndex}"><td>${Object.keys(run)}</td><td>${task}</td><td  class="${activeClass}" id="userAnswer"> ${run[counter]}</td><td>${tasksKey}</td></tr>`
-		for (const iti of chosenArray)
-		{
+		for (const iti of chosenArray) {
 			title = iti[0].title
 		}
 		// collect userdata in an object
 		idUanswerKex.push(
-		{
-			"id": counter,
-			"userAns": run[counter],
-			"key": tasksKey,
-			"task": task
-		})
+			{
+				"id": counter,
+				"userAns": run[counter],
+				"key": tasksKey,
+				"task": task
+			})
 		counter++;
 	}
 	// calculate the result in different formats
-	let inPercent = `${ Math.round(correctAnswerCounter/(counter-1)*100)}%`
-	let inNumbers = `${correctAnswerCounter}/${(counter-1)}`
+	let inPercent = `${Math.round(correctAnswerCounter / (counter - 1) * 100)}%`
+	let inNumbers = `${correctAnswerCounter}/${(counter - 1)}`
 	document.querySelector(".exc-container").innerHTML = `
   <div class="exc-containerr">
     
@@ -284,7 +248,7 @@ function displayRecentAnswers(ansIn)
        </tr> 
 	  
         </table> 
-        <a tabindex="1" onfocus="sayLoudly('exit')" href="exercises.php"><span class="eksz"><p>Exit</p>✕</span></a>
+        <a tabindex="1" onfocus="sayLoudly('exit')" href="exercises.html"><span class="eksz"><p>Exit</p>✕</span></a>
       
     </div>`
 	firestoreUpload(idUanswerKex, title, inPercent, inNumbers)
@@ -299,34 +263,30 @@ let hh = new Date().getHours()
 let mi = new Date().getMinutes() > 10 ? new Date().getMinutes() : `0${new Date().getMinutes()}`
 let currentDate = `${yyyy}/${mm}/${dd} - ${hh}:${mi}`
 // write data to the firestora database
-function firestoreUpload(idUanswerKey, title, result, inNumbers)
-{
+function firestoreUpload(idUanswerKey, title, result, inNumbers) {
 	let user = firebase.auth().currentUser;
 	//create a new collection insede the user collection
 	db.collection("results").doc().set(
-	{
-		submitted: currentDate,
-		excercise: idUanswerKey,
-		email: user.email,
-		duration: Math.floor((startdate - today) / 1000),
-		title: title,
-		uid: user.uid,
-		result: result,
-		inNumbers: inNumbers
-	},
-	{
-		merge: true
-	})
+		{
+			submitted: currentDate,
+			excercise: idUanswerKey,
+			email: user.email,
+			duration: Math.floor((startdate - today) / 1000),
+			title: title,
+			uid: user.uid,
+			result: result,
+			inNumbers: inNumbers
+		},
+		{
+			merge: true
+		})
 }
 // logout function and display the welcoming page.
-function logout()
-{
+function logout() {
 	auth.signOut()
-	auth.onAuthStateChanged(function (user)
-	{
-		if (user == null)
-		{
-			window.open("../index.php", "_self")
+	auth.onAuthStateChanged(function (user) {
+		if (user == null) {
+			window.open("../index.html", "_self")
 		}
 	});
 }
